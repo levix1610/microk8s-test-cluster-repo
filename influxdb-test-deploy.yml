@@ -61,13 +61,13 @@ spec:
         # - name: INFLUXD_CONFIG_PATH # If using a config file mounted elsewhere
         #   value: "/etc/influxdb2/config.yml"
         # --- Optional but Recommended: Resource Limits ---
-        # resources:
-        #   requests:
-        #     memory: "512Mi"
-        #     cpu: "250m"
-        #   limits:
-        #     memory: "2Gi"
-        #     cpu: "1000m" # 1 CPU core
+        resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "2Gi"
+              cpu: "1000m" # 1 CPU core
 
       volumes:
         # Define the volume that uses the PVC
