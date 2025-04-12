@@ -5,8 +5,8 @@ cd /path/to/your/directory
 git init
 
 # 3. (Optional) Configure Git user
-# git config user.name "Your Name"
-# git config user.email "your.email@example.com"
+git config user.name "Your Name"
+git config user.email "your.email@example.com"
 
 # 4. Add your file
 git add your_file_name.yml
