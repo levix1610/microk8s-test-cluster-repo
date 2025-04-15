@@ -23,7 +23,7 @@ spec:
   # storageClassName: (Optional but often required) The type of storage to request.
   # This MUST match a StorageClass available in your cluster (e.g., 'standard', 'gp2', 'managed-premium', 'local-storage').
   # Ask your cluster administrator if you don't know what to use.
-  # storageClassName: <storage-class-name>
+  # storageClassName: <storage-class-name> , <cephfs-storage-class-name>  e.g., cephfs-sc
 
 ---
 # --- Deployment ---

@@ -1,0 +1,16 @@
+# --- ClusterIP Service for InfluxDB ---
+# Exposes InfluxDB internally within the Kubernetes cluster.
+apiVersion: v1
+kind: Service
+metadata:
+  name: influxdb-clusterip-svc # Name for the internal service
+  labels:
+    app: influxdb
+spec:
+  type: ClusterIP # Default type, stable internal IP
+  selector:
+    app: influxdb # Selects Pods with the 'app=influxdb' label
+  ports:
+  - protocol: TCP
+    port: 8086         # Port the service listens on
+    targetPort: 8086 # Port name or number (8086) on the Pod to forward traffic to

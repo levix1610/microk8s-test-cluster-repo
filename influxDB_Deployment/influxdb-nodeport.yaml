@@ -1,0 +1,19 @@
+# --- NodePort Service for InfluxDB ---
+# Exposes InfluxDB externally on each Node's IP address.
+# Use carefully, consider LoadBalancer or Ingress for production.
+apiVersion: v1
+kind: Service
+metadata:
+  name: influxdb-nodeport-svc # Name for the external service
+  labels:
+    app: influxdb
+spec:
+  type: NodePort # Exposes the service on each Node's IP at a static port
+  selector:
+    app: influxdb # Selects Pods with the 'app=influxdb' label
+  ports:
+  - protocol: TCP
+    port: 8086         # Port the service listens on internally
+    targetPort: 8086 # Port name or number (8086) on the Pod to forward traffic to
+    nodePort: 308086  # Optional: Specify a port in the NodePort range (30000-32767)
+                      # If omitted, Kubernetes assigns a random one.

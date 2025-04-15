@@ -1,0 +1,56 @@
+# --- InfluxDB Deployment ---
+# Manages the InfluxDB Pod.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: influxdb-deployment # Name for the Deployment
+  labels:
+    app: influxdb
+spec:
+  # InfluxDB OSS typically runs as a single instance. Clustering is more complex.
+  replicas: 1
+  selector:
+    matchLabels:
+      app: influxdb # Must match labels on the Pod template
+  template:
+    metadata:
+      labels:
+        app: influxdb # Labels applied to the Pod(s)
+    spec:
+      containers:
+      - name: influxdb # Name for the container
+        # Use a specific version tag is recommended over latest
+        image: influxdb:2.7.5 # Example: InfluxDB v2.7.5 image
+        ports:
+          # Default InfluxDB v2 API port
+        - containerPort: 8086
+          name: influxDB-port # Name for the port
+        volumeMounts:
+        - name: influxdb-data # Must match the volume name defined below
+          # Mount path inside the container as requested
+          mountPath: /mnt/cephfs
+        # --- IMPORTANT: Configure InfluxDB to USE the mount path ---
+        # You likely need environment variables or a config file to tell
+        # InfluxDB where to store data. Add them here. Example for v2:
+        # env:
+        # - name: INFLUXD_BOLT_PATH
+        #   value: "/mnt/cephfs/influxd.bolt"
+        # - name: INFLUXD_ENGINE_PATH
+        #   value: "/mnt/cephfs/engine"
+        # - name: INFLUXD_CONFIG_PATH # If using a config file mounted elsewhere
+        #   value: "/etc/influxdb2/config.yml"
+        # --- Optional but Recommended: Resource Limits ---
+        resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "2Gi"
+              cpu: "1000m" # 1 CPU core
+
+      volumes:
+        # Define the volume that uses the PVC
+      - name: influxdb-data # Must match volumeMounts.name above
+        persistentVolumeClaim:
+          # Must match the metadata.name of the PVC defined above
+          claimName: influxdb-pvc

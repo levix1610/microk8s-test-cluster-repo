@@ -16,7 +16,7 @@ spec:
       # Set the amount of storage needed for InfluxDB data.
       storage: 10Gi # Example: 5 Gigabytes - ADJUST AS NEEDED
   # IMPORTANT: Replace with the StorageClass name for your CephFS provisioner.
-  storageClassName: <cephfs-storage-class-name> # e.g., cephfs-sc
+  storageClassName: ceph-rbd # e.g., cephfs-sc
 
 ---
 # --- InfluxDB Deployment ---
@@ -45,7 +45,7 @@ spec:
         ports:
           # Default InfluxDB v2 API port
         - containerPort: 8086
-          name: http-api # Name for the port
+          name: influxDB-port # Name for the port
         volumeMounts:
         - name: influxdb-data # Must match the volume name defined below
           # Mount path inside the container as requested
@@ -92,7 +92,7 @@ spec:
   ports:
   - protocol: TCP
     port: 8086         # Port the service listens on
-    targetPort: http-api # Port name or number (8086) on the Pod to forward traffic to
+    targetPort: 8086 # Port name or number (8086) on the Pod to forward traffic to
 
 ---
 # --- NodePort Service for InfluxDB ---
@@ -111,6 +111,6 @@ spec:
   ports:
   - protocol: TCP
     port: 8086         # Port the service listens on internally
-    targetPort: http-api # Port name or number (8086) on the Pod to forward traffic to
+    targetPort: 8086 # Port name or number (8086) on the Pod to forward traffic to
     nodePort: 308086  # Optional: Specify a port in the NodePort range (30000-32767)
                       # If omitted, Kubernetes assigns a random one.
