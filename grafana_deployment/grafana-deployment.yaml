@@ -1,0 +1,54 @@
+# --- Deployment ---
+# Manages the Pods running your application container.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # name: A unique name for your Deployment.
+  name: grafana-deployment
+  labels:
+    app: grafana
+spec:
+  replicas: 2 # e.g., 2
+  selector:
+    # Must match the labels on the Pod template below.
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      # Labels applied to the Pods created by this Deployment. Must match spec.selector.matchLabels.
+      labels:
+        app: grafana
+    spec:
+      containers:
+      - name: grafana
+        image: grafana/grafana:latest # e.g., your-repo/your-app:latest
+        ports:
+        - containerPort: 3000 # The port your application listens on INSIDE the container (e.g., 8080)
+          name: grafana-port # Optional name for the port
+        # volumeMounts: Mounts the volume requested by the PVC into the container.
+        volumeMounts:
+        - name: grafana-storage-pvc # Must match the volume name defined below in spec.volumes
+          # mountPath: The directory path inside the container where the storage will be accessible.
+          mountPath: /mnt/cephfs # e.g., /app/data or /var/www/html
+        # --- Optional but Recommended ---
+        resources:
+            requests:
+              memory: "184Mi"
+              cpu: "100m"
+            limits:
+              memory: "1000Mi"
+              cpu: "1000m"
+        # env:
+        # - name: MY_ENV_VAR
+        #   value: "my_value"
+        # livenessProbe: ... (configure as needed)
+        # readinessProbe: ... (configure as needed)
+
+      # volumes: Defines the volumes available to the Pod.
+      volumes:
+      # - name: Must match the name used in volumeMounts above.
+      - name: grafana-storage-pvc # e.g., app-data
+        # persistentVolumeClaim: Links this volume definition to the PVC created earlier.
+        persistentVolumeClaim:
+          # claimName: Must match the metadata.name of the PVC defined above.
+          claimName: grafana-storage-pvc

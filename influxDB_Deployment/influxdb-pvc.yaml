@@ -11,6 +11,7 @@ spec:
     # ReadWriteOnce is usually appropriate for InfluxDB unless using specific clustering.
     # CephFS also supports ReadWriteMany (RWX) if needed, but check InfluxDB compatibility.
     - ReadWriteOnce
+  storageClassName: rook-ceph-rbd
   resources:
     requests:
       # Set the amount of storage needed for InfluxDB data.

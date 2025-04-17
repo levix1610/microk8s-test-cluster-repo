@@ -26,7 +26,7 @@ spec:
         - containerPort: 8086
           name: influxDB-port # Name for the port
         volumeMounts:
-        - name: influxdb-data # Must match the volume name defined below
+        - name: influxdb-pvc # Must match the volume name defined below
           # Mount path inside the container as requested
           mountPath: /mnt/cephfs
         # --- IMPORTANT: Configure InfluxDB to USE the mount path ---
@@ -50,7 +50,7 @@ spec:
 
       volumes:
         # Define the volume that uses the PVC
-      - name: influxdb-data # Must match volumeMounts.name above
+      - name: influxdb-pvc # Must match volumeMounts.name above
         persistentVolumeClaim:
           # Must match the metadata.name of the PVC defined above
           claimName: influxdb-pvc
