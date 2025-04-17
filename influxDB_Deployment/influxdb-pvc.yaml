@@ -16,4 +16,3 @@ spec:
       # Set the amount of storage needed for InfluxDB data.
       storage: 10Gi # Example: 5 Gigabytes - ADJUST AS NEEDED
   # IMPORTANT: Replace with the StorageClass name for your CephFS provisioner.
-  storageClassName: ceph-rbd # e.g., cephfs-sc
