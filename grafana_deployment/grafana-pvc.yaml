@@ -16,7 +16,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   # resources: Specifies the amount of storage requested.
-  storageClassName: rook-ceph-rbd 
+  storageClassName: ceph-rbd
   resources:
     requests:
       # storage: The amount of storage required (e.g., 1Gi, 10Gi, 100Mi).
