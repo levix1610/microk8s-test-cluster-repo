@@ -1,0 +1,23 @@
+# --- ClusterIP Service ---
+# Exposes the application Pods on a stable IP address *within* the cluster.
+# Other applications inside the cluster can reach your app via this Service's name and port.
+apiVersion: v1
+kind: Service
+metadata:
+  # name: A unique name for the ClusterIP service.
+  name: jellyfin-clusterip-svc
+  labels:
+    app: jellyfin
+spec:
+  # type: ClusterIP is the default, but explicitly stating it is clearer.
+  type: ClusterIP
+  # selector: Selects the Pods to send traffic to. Must match the labels on the Pods (spec.template.metadata.labels).
+  selector:
+    app: jellyfin
+  ports:
+    # - protocol: Usually TCP.
+  - protocol: TCP
+    # port: The port number the Service will listen on *within the cluster*.
+    port: 8096 # e.g., 80
+    # targetPort: The port on the Pods (containerPort) to forward traffic to. Can be the number or the name (e.g., 'http').
+    targetPort: 8096 # e.g., 8080 (must match containerPort in Deployment) or 'http' if named

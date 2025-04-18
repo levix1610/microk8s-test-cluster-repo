@@ -98,6 +98,12 @@ Show Storage:
 microk8s kubectl get sc
 ```
 
+Show ALL:
+
+```
+microk8s kubectl get all --all-namespaces
+```
+
 Change Default Storage Path:
 
 ```
