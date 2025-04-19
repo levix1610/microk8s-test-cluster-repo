@@ -15,5 +15,5 @@ spec:
   - protocol: TCP
     port: 8086         # Port the service listens on internally
     targetPort: 8086 # Port name or number (8086) on the Pod to forward traffic to
-    nodePort: 308086  # Optional: Specify a port in the NodePort range (30000-32767)
+    nodePort: 30086  # Optional: Specify a port in the NodePort range (30000-32767)
                       # If omitted, Kubernetes assigns a random one.

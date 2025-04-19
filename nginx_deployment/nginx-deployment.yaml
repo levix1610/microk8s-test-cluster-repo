@@ -5,6 +5,7 @@ kind: Deployment
 metadata:
   # name: A unique name for your Deployment.
   name: nginx-deployment
+  namespace: rook-ceph #Looks like it needs to be added to said namespace to use ceph storage.
   labels:
     app: nginx
 spec:

@@ -24,7 +24,7 @@ spec:
         ports:
           # Default InfluxDB v2 API port
         - containerPort: 8086
-          name: influxDB-port # Name for the port
+          name: influxdb-port # Name for the port
         volumeMounts:
         - name: ceph-rbd # Must match the volume name defined below
           # Mount path inside the container as requested

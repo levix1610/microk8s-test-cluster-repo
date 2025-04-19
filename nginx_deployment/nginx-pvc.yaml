@@ -6,6 +6,7 @@ kind: PersistentVolumeClaim
 metadata:
   # name: A unique name for your PVC. This will be referenced by the Deployment.
   name: nginx-pvc
+  namespace: rook-ceph #needs to be created in said namespace to use ceph.
   labels:
     app: nginx
 spec:
