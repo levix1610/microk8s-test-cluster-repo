@@ -6,7 +6,6 @@ kind: PersistentVolumeClaim
 metadata:
   # name: A unique name for your PVC. This will be referenced by the Deployment.
   name: nginx-pvc
-  namespace: rook-ceph #needs to be created in said namespace to use ceph.
   labels:
     app: nginx
 spec:
@@ -15,7 +14,7 @@ spec:
   # - ReadOnlyMany (ROX): Can be mounted read-only by many nodes.
   # - ReadWriteMany (RWX): Can be mounted read-write by many nodes (requires capable storage like NFS).
   accessModes:
-    - ReadWriteMany #needs to be this since its a ceph storage and many pods will be using it.
+    - ReadWriteOnce #needs to be this since its a ceph storage and many pods will be using it.
   # resources: Specifies the amount of storage requested.
   storageClassName: ceph-rbd #needs to be on this line. Issues from below.
   resources:
