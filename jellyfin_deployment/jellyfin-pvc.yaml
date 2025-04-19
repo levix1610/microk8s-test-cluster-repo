@@ -14,10 +14,10 @@ spec:
   # - ReadOnlyMany (ROX): Can be mounted read-only by many nodes.
   # - ReadWriteMany (RWX): Can be mounted read-write by many nodes (requires capable storage like NFS).
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   # resources: Specifies the amount of storage requested.
+  storageClassName: ceph-rbd #needs to be at this level.
   resources:
-    storageClassName: ceph-rbd
     requests:
       # storage: The amount of storage required (e.g., 1Gi, 10Gi, 100Mi).
       storage: 10Gi # e.g., 5Gi
