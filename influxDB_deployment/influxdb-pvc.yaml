@@ -10,8 +10,8 @@ spec:
   accessModes:
     # ReadWriteOnce is usually appropriate for InfluxDB unless using specific clustering.
     # CephFS also supports ReadWriteMany (RWX) if needed, but check InfluxDB compatibility.
-    - ReadWriteMany
-  storageClassName: ceph-rbd
+    - ReadWriteOnce
+  storageClassName: microk8s-hostpath
   resources:
     requests:
       # Set the amount of storage needed for InfluxDB data.

@@ -14,9 +14,9 @@ spec:
   # - ReadOnlyMany (ROX): Can be mounted read-only by many nodes.
   # - ReadWriteMany (RWX): Can be mounted read-write by many nodes (requires capable storage like NFS).
   accessModes:
-    - ReadWriteOnce #needs to be this since its a ceph storage and many pods will be using it.
+    - ReadWriteOnce
+  storageClassName: microk8s-hostpath #needs to be on this line. Issues from below.
   # resources: Specifies the amount of storage requested.
-  storageClassName: ceph-rbd #needs to be on this line. Issues from below.
   resources:
     requests:
       # storage: The amount of storage required (e.g., 1Gi, 10Gi, 100Mi).

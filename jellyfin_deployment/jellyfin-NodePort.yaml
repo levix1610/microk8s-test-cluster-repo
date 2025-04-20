@@ -24,4 +24,4 @@ spec:
     # nodePort: (Optional) The static port exposed on each Node's IP.
     # If specified, must be in the configured NodePort range (default: 30000-32767).
     # If omitted, Kubernetes assigns a random available port from the range.
-    nodePort: 300096 # e.g., 30080
+    nodePort: 30096 # e.g., 30080

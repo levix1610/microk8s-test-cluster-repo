@@ -15,9 +15,9 @@ spec:
   # - ReadWriteMany (RWX): Can be mounted read-write by many nodes (requires capable storage like NFS).
   accessModes:
     - ReadWriteOnce
+  storageClassName: ceph-rbd
   # resources: Specifies the amount of storage requested.
   resources:
-    storageClassName: ceph-rbd
     requests:
       # storage: The amount of storage required (e.g., 1Gi, 10Gi, 100Mi).
       storage: <storage-amount> # e.g., 5Gi

@@ -12,3 +12,4 @@ Currently these deployments are being created WITH the help of AI resources; so 
 
 Plans on starting a formal Class to better understand DevOps best practices I will be starting in the coming weeks. 
 
+Had many failures with the process at creating the ceph cluster.  Found another way to do it but is FAR from production ready.  However, I think, is a good solid first attempt at a cluster.

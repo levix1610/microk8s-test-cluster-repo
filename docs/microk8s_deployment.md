@@ -1,4 +1,5 @@
-### MicroK8s Deployment Instructions:  
+
+### __MicroK8s Deployment Instructions:__  
 
 These instructions work to get you up and running with a simple 3 node microk8s Kubernetes cluster. 
 
@@ -90,12 +91,16 @@ will show the default storage name then after which will be something like 'ceph
 From here you are ready to use your cluster.  Commands can be executed by using 'microk8s kubectl' <command>.
 
 ####   
-Other Useful Commands:
+**__Other Useful Commands:__**
 
 Show Storage:
 
 ```
 microk8s kubectl get sc
+```
+
+```
+microk8s kubectl get pvc -A
 ```
 
 Show ALL:
@@ -110,13 +115,13 @@ Change Default Storage Path:
 microk8s kubectl patch storageclass ceph-rbd -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 ```
 
-Install Portainer:
+__Install Portainer:__
 
 ```
 microk8s kubectl apply -n portainer -f https://downloads.portainer.io/ee-lts/portainer.yaml
 ```
 
-can then reach @ https://localhost:30779
+can then reach @ [__https://localhost:30779__](https://localhost:30779)
 
 get all services and namespaces:
 
@@ -131,7 +136,7 @@ to deploy a yaml (yml) files:
 kubectl apply -f my-app-deployment.yaml
 ```
 
-#### Deploying on Microk8s ex:
+#### **__Deploying on Microk8s ex:__**
 
 Well these commands can be used to quickly deploy pods and services.  It is strongly recommended not to do so in this manor.  And, to build it from yaml files.  However, the commands are listed below for examples.  
 
@@ -145,7 +150,7 @@ ex:
 microk8s kubectl create deployment my-nginx --image=nginx:latest
 ```
 
-Create Cluster IP service
+##### __Create Cluster IP service__
 
 (Port and target-port can be the same #.  Check by viewing namespaces and copy over works fine)
 
@@ -159,7 +164,7 @@ ex:
 microk8s kubectl expose deployment my-nginx --port=80 --target-port=80 --name=my-nginx-service
 ```
 
-Create external Port:
+##### __Create external Port:__
 
 (this creates the port so you can access the pod/container via the clusters IPs)
 
@@ -173,7 +178,7 @@ ex:
 microk8s kubectl expose deployment my-nginx --type=NodePort --port=80 --target-port=80 --name=nginx-nodeport-service
 ```
 
-Scaling up a deployments Pods:
+##### **__Scaling up a deployments Pods:__**
 
 (If you want to replicate the number of Pods for a deployment.)
 
@@ -189,7 +194,7 @@ microk8s kubectl scale deployment influxdb --replicas=3
 
 Be careful on the replication of some deployments as not all scale well and do better off with a single pod deployment.  
 
-Deleting Deployments and Services:
+##### **__Deleting Deployments and Services:__**
 
 ```
 microk8s kubectl delete deployment <deployment-name>
@@ -198,3 +203,37 @@ microk8s kubectl delete deployment <deployment-name>
 ```
 microk8s kubectl delete service <service-name>
 ```
+
+### Alternate Way to Deploy Ceph:
+
+Since all the other methods have failed I gave this run a try
+
+microk8s-hostpath
+
+Clone the repository from Rook:
+
+```
+git clone --single-branch --branch release-1.12 https://github.com/rook/rook.git
+```
+
+Go to the directory:
+
+```
+cd rook/deploy/examples
+```
+
+Then run the create command on the 3 files as below:
+
+```
+microk8s kubectl create -f crds.yaml -f common.yaml -f operator.yaml
+```
+
+When you run:
+
+```
+microk8s kubectl get sc
+```
+
+You should see the new storage path created as microk8s-hostpath
+
+The Massive downside to this deployment is it looks to use the Host Disk to implement in what I can tell. 

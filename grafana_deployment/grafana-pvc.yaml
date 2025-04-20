@@ -5,7 +5,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   # name: A unique name for your PVC. This will be referenced by the Deployment.
-  name: grafana-storage-pvc
+  name: grafana-pvc
   labels:
     app: grafana
 spec:
@@ -14,8 +14,8 @@ spec:
   # - ReadOnlyMany (ROX): Can be mounted read-only by many nodes.
   # - ReadWriteMany (RWX): Can be mounted read-write by many nodes (requires capable storage like NFS).
   accessModes:
-    - ReadWriteMany
-  storageClassName: ceph-rbd
+    - ReadWriteOnce
+  storageClassName: microk8s-hostpath
   # resources: Specifies the amount of storage requested.
   resources:
     requests:
