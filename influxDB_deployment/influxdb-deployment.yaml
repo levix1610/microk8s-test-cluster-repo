@@ -26,7 +26,7 @@ spec:
         - containerPort: 8086
           name: influxdb-port # Name for the port
         volumeMounts:
-        - name: microk8s-hostpath # Must match the volume name defined below
+        - name: synNFS # Must match the volume name defined below
           # Mount path inside the container as requested
           mountPath: /mnt/cephfs
         # --- IMPORTANT: Configure InfluxDB to USE the mount path ---
@@ -44,13 +44,13 @@ spec:
             requests:
               memory: "512Mi"
               cpu: "250m"
-            #limits:
-            #  memory: "1Gi"
-            # cpu: "1000m" # 1 CPU core
+            limits:
+              memory: "1Gi"
+              cpu: "1000m" # 1 CPU core
 
       volumes:
         # Define the volume that uses the PVC
-      - name: microk8s-hostpath # Must match volumeMounts.name above
+      - name: synNFS # Must match volumeMounts.name above
         persistentVolumeClaim:
           # Must match the metadata.name of the PVC defined above
           claimName: influxdb-pvc
