@@ -1,0 +1,18 @@
+# --- PersistentVolumeClaim (PVC) ---
+# This requests persistent storage from the cluster.
+# The actual storage (PersistentVolume) is usually provisioned dynamically based on the StorageClass.
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-manual-pv  # Example name
+spec:
+  capacity:
+    storage: 10Gi # Must be >= PVC request
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany # Match what NFS provides
+  persistentVolumeReclaimPolicy: Retain # Or Recycle/Delete
+  # Use hostPath pointing to your identical NFS mount point
+  hostPath:
+    path: "/mnt/cephfs/app-data" # Use the host path (maybe a subdirectory)
+    type: DirectoryOrCreate # Ensure the directory exists
