@@ -9,11 +9,12 @@ metadata:
   labels:
     app: nginx
 spec:
-  capacity:
-    storage: 5Gi # Must be >= PVC request
-  volumeMode: Filesystem
   accessModes:
-    - ReadWriteMany # Match what NFS provides
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi # Must be >= PVC request
+  volumeMode: Filesystem
   persistentVolumeReclaimPolicy: Retain # Or Recycle/Delete
   # Use hostPath pointing to your identical NFS mount point
   hostPath:
