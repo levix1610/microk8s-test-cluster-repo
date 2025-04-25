@@ -29,7 +29,7 @@ spec:
         volumeMounts:
         - name: synNFS # Must match the volume name defined below in spec.volumes
           # mountPath: The directory path inside the container where the storage will be accessible.
-          mountPath: /mnt/cephfs # e.g., /app/data or /var/www/html
+          mountPath: "/mnt/microk8s/nginx-data" # e.g., /app/data or /var/www/html
         # --- Optional but Recommended ---
         resources:    #NEEDS to be in LINE with 'containers' section by lining up with 'name' - Caused errors
           requests:

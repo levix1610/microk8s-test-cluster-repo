@@ -17,5 +17,5 @@ spec:
   persistentVolumeReclaimPolicy: Retain # Or Recycle/Delete
   # Use hostPath pointing to your identical NFS mount point
   hostPath:
-    path: "/mnt/cephfs/nginx-data" # Use the host path (maybe a subdirectory)
+    path: "/mnt/microk8s/nginx-data" # Use the host path (maybe a subdirectory)
     type: DirectoryOrCreate # Ensure the directory exists
