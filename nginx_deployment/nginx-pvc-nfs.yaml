@@ -1,21 +1,15 @@
-# --- PersistentVolumeClaim (PVC) ---
-# This requests persistent storage from the cluster.
-# The actual storage (PersistentVolume) is usually provisioned dynamically based on the StorageClass.
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  # name: A unique name for your PVC. This will be referenced by the Deployment.
-  name: nginx-pvc
+  name: nginx-pvc  #pvc claim name
   labels:
     app: nginx
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteMany  #needs to be Many since shared location
   resources:
     requests:
-      storage: 5Gi # Must be >= PVC requests
-  persistentVolumeReclaimPolicy: Retain # Or Recycle/Delete
-  # Use hostPath pointing to your identical NFS mount point
-  hostPath:
-    path: "/mnt/microk8s/nginx-data" # Use the host path (maybe a subdirectory)
-    type: DirectoryOrCreate # Ensure the directory exists
+      storage: 5Gi  #match the PV claim
+  selector:
+    matchLabels:
+      app: nginx # This label should match the labels of your PV

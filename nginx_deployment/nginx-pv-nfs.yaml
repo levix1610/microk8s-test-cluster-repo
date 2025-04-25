@@ -1,0 +1,16 @@
+#PV claim of the storage on the NFS share for the PVC to mount to.
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nginx-pv # A unique name for your PV
+  labels:
+    app: nginx
+spec:
+  capacity:
+    storage: 5Gi # Must match or exceed the PVC request
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain # Or Recycle/Delete, choose what happens to the NFS data when the PV is released
+  nfs:
+    server: 10.0.150.10 # Replace with the actual IP or hostname of your NFS server
+    path: /volume1/microk8s/nginx # Replace with the actual export path on your NFS server
