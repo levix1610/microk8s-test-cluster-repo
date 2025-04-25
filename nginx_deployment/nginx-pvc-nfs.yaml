@@ -13,8 +13,7 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 5Gi # Must be >= PVC request
-  volumeMode: Filesystem
+      storage: 5Gi # Must be >= PVC requests
   persistentVolumeReclaimPolicy: Retain # Or Recycle/Delete
   # Use hostPath pointing to your identical NFS mount point
   hostPath:
