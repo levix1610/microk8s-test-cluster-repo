@@ -13,3 +13,9 @@ Currently these deployments are being created WITH the help of AI resources; so 
 Plans on starting a formal Class to better understand DevOps best practices I will be starting in the coming weeks. 
 
 Had many failures with the process at creating the ceph cluster.  Found another way to do it but is FAR from production ready.  However, I think, is a good solid first attempt at a cluster.
+
+Finally, I have a good structure in how to make a full deployment using a remote NFS share on my NAS.  And, how to provision such storage to be used by the kubernetes cluster without the host knowing about the NFS share.
+
+This will make it the easiest and most repeatable ability to deploy a full app across future nodes.
+
+Next will need to move onto figuring out how to work with Databases Within a POD.  As the homarr deployment, and the heimdall one, both seem to not work as they need a formal DB to work from, not just storage. 
