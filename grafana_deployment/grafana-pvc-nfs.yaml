@@ -6,15 +6,15 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nginx-pvc  #pvc claim name
+  name: grafana-pvc  #pvc claim name
   labels:
-    app: nginx
+    app: grafana
 spec:
   accessModes:
     - ReadWriteMany  #needs to be Many since shared location
   resources:
     requests:
-      storage: 5Gi  #Must be equal or less than PV claim
+      storage: 10Gi  #Must be equal or less than PV claim
   selector:
     matchLabels:
-      app: nginx # This label should match the labels of your PV
+      app: grafana # This label should match the labels of your PV

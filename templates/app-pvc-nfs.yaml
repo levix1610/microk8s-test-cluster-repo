@@ -14,7 +14,7 @@ spec:
     - ReadWriteMany  #needs to be Many since shared location
   resources:
     requests:
-      storage: 5Gi  #match the PV claim
+      storage: 5Gi  #Must be equal or less than PV claim
   selector:
     matchLabels:
       app: app-name # This label should match the labels of your PV

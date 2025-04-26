@@ -26,9 +26,9 @@ spec:
         - containerPort: 8086
           name: influxdb-port # Name for the port
         volumeMounts:
-        - name: synNFS # Must match the volume name defined below
+        - name: synnfs # Must match the volume name defined below
           # Mount path inside the container as requested
-          mountPath: /mnt/cephfs
+          mountPath: /app/data
         # --- IMPORTANT: Configure InfluxDB to USE the mount path ---
         # You likely need environment variables or a config file to tell
         # InfluxDB where to store data. Add them here. Example for v2:
@@ -50,7 +50,7 @@ spec:
 
       volumes:
         # Define the volume that uses the PVC
-      - name: synNFS # Must match volumeMounts.name above
+      - name: synnfs # Must match volumeMounts.name above
         persistentVolumeClaim:
           # Must match the metadata.name of the PVC defined above
           claimName: influxdb-pvc

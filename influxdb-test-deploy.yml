@@ -1,5 +1,6 @@
 # --- PersistentVolumeClaim (PVC) for InfluxDB Data ---
 # Requests storage, expected to be provisioned on CephFS via the specified StorageClass.
+# ###my first file for a deployment when I throught keeping it all together made the most sense.  Keeping this file in the respository as a marker of how far I have come in learning###
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:

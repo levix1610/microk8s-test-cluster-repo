@@ -8,7 +8,7 @@ metadata:
   labels:
     app: homarr
 spec:
-  replicas: 1 # e.g., 2
+  replicas: 2 # e.g., 2
   selector:
     # Must match the labels on the Pod template below.
     matchLabels:
@@ -27,17 +27,17 @@ spec:
           name: homarr-port # Optional name for the port
         # volumeMounts: Mounts the volume requested by the PVC into the container.
         volumeMounts:
-        - name: synNFS # Must match the volume name defined below in spec.volumes
+        - name: synnfs # Must match the volume name defined below in spec.volumes / lowercase only.
           # mountPath: The directory path inside the container where the storage will be accessible.
-          mountPath: /mnt/cephfs # e.g., /app/data or /var/www/html
+          mountPath: /app/data # e.g., /app/data or /var/www/html
         # --- Optional but Recommended ---
-        #resources:
-          #requests:
-          #  memory: "64Mi"
-          #  cpu: "100m"
-          #limits:
-          #  memory: "128Mi"
-          #  cpu: "250m"
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+             memory: "512Mi"
+             cpu: "1000m"
         # env:
         # - name: MY_ENV_VAR
         #   value: "my_value"
@@ -47,7 +47,7 @@ spec:
       # volumes: Defines the volumes available to the Pod.
       volumes:
       # - name: Must match the name used in volumeMounts above.
-      - name: synNFS # e.g., app-data
+      - name: synnfs # e.g., app-data. Must be all lowercase.
         # persistentVolumeClaim: Links this volume definition to the PVC created earlier.
         persistentVolumeClaim:
           # claimName: Must match the metadata.name of the PVC defined above.

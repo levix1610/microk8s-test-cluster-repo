@@ -6,9 +6,9 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nginx-pvc  #pvc claim name
+  name: homarr-pvc  #pvc claim name
   labels:
-    app: nginx
+    app: homarr
 spec:
   accessModes:
     - ReadWriteMany  #needs to be Many since shared location
@@ -17,4 +17,4 @@ spec:
       storage: 5Gi  #Must be equal or less than PV claim
   selector:
     matchLabels:
-      app: nginx # This label should match the labels of your PV
+      app: homarr # This label should match the labels of your PV

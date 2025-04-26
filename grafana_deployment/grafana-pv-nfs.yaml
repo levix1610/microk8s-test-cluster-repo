@@ -1,0 +1,20 @@
+#PV needs to be deployed before the app-pvc-nfs.yaml file.
+#This tells kubernetes where the storage is and removes the need for NFS to be mounted to the host. 
+#PV is a static resource in the cluster well the PVC is the request of that resource.
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: grafana-pv # A unique name for your PV
+  labels:
+    app: grafana
+spec:
+  capacity:
+    storage: 10Gi # Must match or exceed the PVC request
+  accessModes:
+    - ReadWriteMany #same as PVC for shared location.
+  persistentVolumeReclaimPolicy: Retain # Or Recycle/Delete, choose what happens to the NFS data when the PV is released
+  nfs:
+    server: 10.0.150.10 # Replace with the actual IP or hostname of your NFS server / ex. 10.0.150.10
+    #Path defined here HAS to exist in the directory. Will NOT create a directory for the app.
+    path: /volume1/microk8s/grafana # Replace with the actual export path on your NFS server / ex. /volume1/microk8s/nginx

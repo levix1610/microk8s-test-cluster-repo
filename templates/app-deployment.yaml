@@ -31,7 +31,7 @@ spec:
           # mountPath: The directory path inside the container where the storage will be accessible.
           mountPath: <path-inside-container-for-storage> # e.g., /app/data or /var/www/html
         # --- Optional but Recommended ---
-        # resources:
+        # resources:      #same level as volumeMounts
         #   requests:
         #     memory: "64Mi"
         #     cpu: "100m"
