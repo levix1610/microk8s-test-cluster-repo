@@ -27,7 +27,7 @@ spec:
           name: http # Optional name for the port
         # volumeMounts: Mounts the volume requested by the PVC into the container.
         volumeMounts:
-        - name: <your-app-storage-volume-name> # Must match the volume name defined below in spec.volumes
+        - name: <your-app-storage-volume-name> # Must match the volume name defined below in spec.volumes / lowercase only.
           # mountPath: The directory path inside the container where the storage will be accessible.
           mountPath: <path-inside-container-for-storage> # e.g., /app/data or /var/www/html
         # --- Optional but Recommended ---
@@ -47,7 +47,7 @@ spec:
       # volumes: Defines the volumes available to the Pod.
       volumes:
       # - name: Must match the name used in volumeMounts above.
-      - name: <your-app-storage-volume-name> # e.g., app-data
+      - name: <your-app-storage-volume-name> # e.g., app-data. Must be all lowercase.
         # persistentVolumeClaim: Links this volume definition to the PVC created earlier.
         persistentVolumeClaim:
           # claimName: Must match the metadata.name of the PVC defined above.

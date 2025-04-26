@@ -5,15 +5,16 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nginx-pv # A unique name for your PV
+  name: app-pv # A unique name for your PV
   labels:
-    app: nginx
+    app: app-name
 spec:
   capacity:
     storage: 5Gi # Must match or exceed the PVC request
   accessModes:
-    - ReadWriteMany
+    - ReadWriteMany #same as PVC for shared location.
   persistentVolumeReclaimPolicy: Retain # Or Recycle/Delete, choose what happens to the NFS data when the PV is released
   nfs:
-    server: 10.0.150.10 # Replace with the actual IP or hostname of your NFS server
-    path: /volume1/microk8s/nginx # Replace with the actual export path on your NFS server
+    server: <server-address> # Replace with the actual IP or hostname of your NFS server / ex. 10.0.150.10
+    #Path defined here HAS to exist in the directory. Will NOT create a directory for the app.
+    path: /volume-path/directory # Replace with the actual export path on your NFS server / ex. /volume1/microk8s/nginx

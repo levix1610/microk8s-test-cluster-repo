@@ -1,18 +1,20 @@
 # --- PersistentVolumeClaim (PVC) ---
 # This requests persistent storage from the cluster.
-# The actual storage (PersistentVolume) is usually provisioned dynamically based on the StorageClass.
+# This is used with app-pv-nfs.yaml and need to be deplopyed first before this yaml,
+# so the PV exists for this PVC to bind to. So the storage is defined in the cluster. 
+
 apiVersion: v1
-kind: PersistentVolume
+kind: PersistentVolumeClaim
 metadata:
-  name: nfs-manual-pv  # Example name
+  name: app-pvc  #pvc claim name
+  labels:
+    app: app-name
 spec:
-  capacity:
-    storage: 10Gi # Must be >= PVC request
-  volumeMode: Filesystem
   accessModes:
-    - ReadWriteMany # Match what NFS provides
-  persistentVolumeReclaimPolicy: Retain # Or Recycle/Delete
-  # Use hostPath pointing to your identical NFS mount point
-  hostPath:
-    path: "/mnt/cephfs/app-data" # Use the host path (maybe a subdirectory)
-    type: DirectoryOrCreate # Ensure the directory exists
+    - ReadWriteMany  #needs to be Many since shared location
+  resources:
+    requests:
+      storage: 5Gi  #match the PV claim
+  selector:
+    matchLabels:
+      app: app-name # This label should match the labels of your PV
