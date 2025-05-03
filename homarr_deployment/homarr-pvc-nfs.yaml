@@ -14,7 +14,7 @@ spec:
     - ReadWriteMany  #needs to be Many since shared location
   resources:
     requests:
-      storage: 5Gi  #Must be equal or less than PV claim
+      storage: 10Gi  #Must be equal or less than PV claim
   selector:
     matchLabels:
       app: homarr # This label should match the labels of your PV
