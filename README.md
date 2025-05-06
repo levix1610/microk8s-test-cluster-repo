@@ -19,3 +19,5 @@ Finally, I have a good structure in how to make a full deployment using a remote
 This will make it the easiest and most repeatable ability to deploy a full app across future nodes.
 
 Next will need to move onto figuring out how to work with Databases Within a POD.  As the homarr deployment, and the heimdall one, both seem to not work as they need a formal DB to work from, not just storage. 
+
+Having issues with trying to deploy helm chart of homarr. Not understanding how to define the internal databases.  However, I am going to try to move to a better method; by deploying another POD for a PostgreSQL to use instead.  This is also a better practice to have stateFull and stateLess applications separate.  

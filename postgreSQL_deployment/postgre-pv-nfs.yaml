@@ -5,16 +5,16 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: homarr-pv # A unique name for your PV
+  name: postgre-pv # A unique name for your PV
   labels:
-    app: homarr
+    app: postgreSQL
 spec:
   capacity:
-    storage: 5Gi # Must match or exceed the PVC request
+    storage: 10Gi # Must be equal to or greater than the pvc claim
   accessModes:
     - ReadWriteMany #same as PVC for shared location.
   persistentVolumeReclaimPolicy: Retain # Or Recycle/Delete, choose what happens to the NFS data when the PV is released
   nfs:
     server: 10.0.150.10 # Replace with the actual IP or hostname of your NFS server / ex. 10.0.150.10
     #Path defined here HAS to exist in the directory. Will NOT create a directory for the app.
-    path: /volume1/microk8s/homarr # Replace with the actual export path on your NFS server / ex. /volume1/microk8s/nginx
+    path: /volume1/postgre # Replace with the actual export path on your NFS server / ex. /volume1/microk8s/nginx
