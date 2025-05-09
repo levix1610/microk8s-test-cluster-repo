@@ -1,54 +1,70 @@
-# --- Deployment ---
-# Manages the Pods running your application container.
+# postgres-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  # name: A unique name for your Deployment.
-  name: postgre-deployment
+  # A unique name for the PostgreSQL Deployment
+  name: postgres-deployment
   labels:
-    app: postgreSQL
+    app: postgresSQL # Label for selection by the Service
 spec:
-  replicas: 1 # e.g., 2
+  replicas: 1 # Databases usually run as a single replica unless you configure replication
   selector:
-    # Must match the labels on the Pod template below.
     matchLabels:
-      app: postgreSQL
+      app: postgresSQL # Must match the labels on the Pod template
   template:
     metadata:
-      # Labels applied to the Pods created by this Deployment. Must match spec.selector.matchLabels.
       labels:
-        app: postgreSQL
+        app: postgresSQL # Labels applied to the Pod
     spec:
       containers:
-      - name: postgreSQL
-        image: postgreSQL:latest # e.g., your-repo/your-app:latest
+      - name: postgres
+        # Use an official Postgres image. Consider pinning to a specific version (e.g., postgres:15) for stability.
+        image: postgres:latest
         ports:
-        - containerPort: 5432 # The port your application listens on INSIDE the container (e.g., 8080)
-          name: postgreSQL # Optional name for the port
-        # volumeMounts: Mounts the volume requested by the PVC into the container.
+        - containerPort: 5432 # Standard PostgreSQL port
+          name: postgres-port
+        # Environment variables sourced from the Secret
+        env:
+        - name: POSTGRES_DB
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret # Name of the Secret object
+              key: POSTGRES_DB    # Key within the Secret
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_PASSWORD
+        # Mount the persistent volume
         volumeMounts:
-        - name: postgreSQL # Must match the volume name defined below in spec.volumes / lowercase only.
-          # mountPath: The directory path inside the container where the storage will be accessible.
-          mountPath: /app/data # e.g., /app/data or /var/www/html
+        - name: postgres-data # Must match the volume name defined below
+          # Default data directory for the postgres image
+          mountPath: /var/lib/postgresql/data
         # --- Optional but Recommended ---
-        resources:      #same level as volumeMounts
+        resources:
           requests:
-            memory: "64Mi"
-            cpu: "100m"
+            memory: "256Mi"
+            cpu: "250m"
           limits:
-             memory: "512Mi"
-             cpu: "1000m"
-        # env:
-        # - name: MY_ENV_VAR
-        #   value: "my_value"
-        # livenessProbe: ... (configure as needed)
-        # readinessProbe: ... (configure as needed)
-
-      # volumes: Defines the volumes available to the Pod.
+            memory: "1Gi"
+            cpu: "1000m"
+        # readinessProbe: # Recommended to check if DB is ready
+        #   exec:
+        #     command: ["pg_isready", "-U", "postgres", "-d", "homarr"] # Use values from secret if not default
+        #   initialDelaySeconds: 10
+        #   timeoutSeconds: 5
+        # livenessProbe: # Recommended to check if DB process is running
+        #   exec:
+        #     command: ["pg_isready", "-U", "postgres", "-d", "homarr"]
+        #   initialDelaySeconds: 30
+        #   timeoutSeconds: 5
+      # Define the volume linked to the PVC
       volumes:
-      # - name: Must match the name used in volumeMounts above.
-      - name: postgreSQL # e.g., app-data. Must be all lowercase.
-        # persistentVolumeClaim: Links this volume definition to the PVC created earlier.
+      - name: postgres-data # Must match the name in volumeMounts
         persistentVolumeClaim:
-          # claimName: Must match the metadata.name of the PVC defined above.
-          claimName: postgre-pvc
+          claimName: postgres-pvc # Must match the metadata.name of the PVC

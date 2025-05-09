@@ -3,52 +3,62 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  # name: A unique name for your Deployment.
   name: homarr-deployment
   labels:
     app: homarr
 spec:
   replicas: 2 # e.g., 2
   selector:
-    # Must match the labels on the Pod template below.
     matchLabels:
       app: homarr
   template:
     metadata:
-      # Labels applied to the Pods created by this Deployment. Must match spec.selector.matchLabels.
       labels:
         app: homarr
     spec:
       containers:
       - name: homarr
-        image: ghcr.io/homarr-labs/homarr:latest # e.g., your-repo/your-app:latest
+        image: ghcr.io/homarr-labs/homarr:latest
         ports:
-        - containerPort: 7575 # The port your application listens on INSIDE the container (e.g., 8080)
-          name: homarr-port # Optional name for the port
-        # volumeMounts: Mounts the volume requested by the PVC into the container.
+        - containerPort: 7575
+          name: homarr-port
+        # --- ADD THESE ENVIRONMENT VARIABLES ---
+        env:
+        - name: DATABASE_TYPE
+          value: "postgres" # Tell Homarr to use PostgreSQL
+        - name: DATABASE_HOST
+          # Use the name of the PostgreSQL Service created above
+          # Must be the Cluster IP 'name' defined in the yaml
+          value: "postgre-clusterip-svc"
+        - name: DATABASE_PORT
+          value: "5432" # Standard PostgreSQL port
+        - name: DATABASE_NAME
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret # Use the same secret
+              key: POSTGRES_DB
+        - name: DATABASE_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret # Use the same secret
+              key: POSTGRES_USER
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret # Use the same secret
+              key: POSTGRES_PASSWORD
+        # --- END OF ADDED ENVIRONMENT VARIABLES ---
         volumeMounts:
-        - name: synnfs # Must match the volume name defined below in spec.volumes / lowercase only.
-          # mountPath: The directory path inside the container where the storage will be accessible.
-          mountPath: /app/data # e.g., /app/data or /var/www/html
-        # --- Optional but Recommended ---
+          - name: homarr-data
+            mountPath: /app/data # Homarr config/icons still need persistent storage
         resources:
-          requests:
-            memory: "64Mi"
-            cpu: "100m"
-          limits:
+           requests:
+             memory: "64Mi"
+             cpu: "100m"
+           limits:
              memory: "512Mi"
              cpu: "1000m"
-        # env:
-        # - name: MY_ENV_VAR
-        #   value: "my_value"
-        # livenessProbe: ... (configure as needed)
-        # readinessProbe: ... (configure as needed)
-
-      # volumes: Defines the volumes available to the Pod.
       volumes:
-      # - name: Must match the name used in volumeMounts above.
-      - name: synnfs # e.g., app-data. Must be all lowercase.
-        # persistentVolumeClaim: Links this volume definition to the PVC created earlier.
-        persistentVolumeClaim:
-          # claimName: Must match the metadata.name of the PVC defined above.
+       - name: homarr-data
+         persistentVolumeClaim:
           claimName: homarr-pvc
