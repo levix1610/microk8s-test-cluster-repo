@@ -38,9 +38,10 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "1000m"
-        # env:
-        # - name: MY_ENV_VAR
-        #   value: "my_value"
+         # env:  <-- We'll use this to configure Grafana's data path
+        env:
+        - name: GF_PATHS_DATA
+          value: /app/data/grafana_data  # Set Grafana's data path to our mounted volume
         # livenessProbe: ... (configure as needed)
         # readinessProbe: ... (configure as needed)
 
