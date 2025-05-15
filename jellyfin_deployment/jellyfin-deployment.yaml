@@ -27,9 +27,9 @@ spec:
           name: jellyfin-port # Optional name for the port
         # volumeMounts: Mounts the volume requested by the PVC into the container.
         volumeMounts:
-        - name: synnfs # Must match the volume name defined below in spec.volumes
+        - name: jellyfin-data # Must match the volume name defined below in spec.volumes
           # mountPath: The directory path inside the container where the storage will be accessible.
-          mountPath: /app/data # e.g., /app/data or /var/www/html
+          mountPath: /config # e.g., /app/data or /var/www/html
         # --- Optional but Recommended ---
         resources:    #needs to be on name level of containers
          requests:
@@ -38,16 +38,16 @@ spec:
          limits:
             memory: "2048Mi"
             cpu: "2000m"
-        # env:
-        # - name: MY_ENV_VAR
-        #   value: "my_value"
+        env:
+        - name: JELLYFIN_CONFIG_DIR
+          value: /config # Set Jellyfin's config directory to the mounted volume
         # livenessProbe: ... (configure as needed)
         # readinessProbe: ... (configure as needed)
 
       # volumes: Defines the volumes available to the Pod.
       volumes:
       # - name: Must match the name used in volumeMounts above.
-      - name: synnfs # e.g., app-data
+      - name: jellyfin-data # e.g., app-data
         # persistentVolumeClaim: Links this volume definition to the PVC created earlier.
         persistentVolumeClaim:
           # claimName: Must match the metadata.name of the PVC defined above.
