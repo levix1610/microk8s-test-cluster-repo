@@ -30,6 +30,11 @@ spec:
         - name: jellyfin-data # Must match the volume name defined below in spec.volumes
           # mountPath: The directory path inside the container where the storage will be accessible.
           mountPath: /config # e.g., /app/data or /var/www/html
+          #mount path for remote media NFS shares. See Volumes below for NFS pointing.
+        - name: media-movies #Mount for movies
+          mountPath: /media/movies
+        - name: media-tv  #Mount for TV shows
+          mountPath: /media/tv
         # --- Optional but Recommended ---
         resources:    #needs to be on name level of containers
          requests:
@@ -52,3 +57,12 @@ spec:
         persistentVolumeClaim:
           # claimName: Must match the metadata.name of the PVC defined above.
           claimName: jellyfin-pvc
+      #Mount Path for NFS shares housing Media.
+      - name: media-movies  #Volume definition for movies
+        nfs:
+          server: 10.0.150.10
+          path: /volume1/Movies
+      - name: media-tv     #Volume definition for TV shows
+        nfs:
+          server: 10.0.150.10
+          path: /volume1/TvShows

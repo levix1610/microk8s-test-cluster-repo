@@ -10,7 +10,7 @@ metadata:
     app: jellyfin
 spec:
   capacity:
-    storage: 10Gi # Must match or exceed the PVC request
+    storage: 20Gi # Must match or exceed the PVC request
   accessModes:
     - ReadWriteMany #same as PVC for shared location.
   persistentVolumeReclaimPolicy: Retain # Or Recycle/Delete, choose what happens to the NFS data when the PV is released

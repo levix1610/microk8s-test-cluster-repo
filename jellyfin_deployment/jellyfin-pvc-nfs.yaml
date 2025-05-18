@@ -14,7 +14,7 @@ spec:
     - ReadWriteMany  #needs to be Many since shared location
   resources:
     requests:
-      storage: 10Gi  #Must be equal or less than PV claim
+      storage: 20Gi  #Must be equal or less than PV claim
   selector:
     matchLabels:
       app: jellyfin # This label should match the labels of your PV
