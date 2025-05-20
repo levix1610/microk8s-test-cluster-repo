@@ -42,7 +42,7 @@ spec:
            cpu: "500m"
          limits:
             memory: "2048Mi"
-            cpu: "2000m"
+            cpu: "3000m"
         env:
         - name: JELLYFIN_CONFIG_DIR
           value: /config # Set Jellyfin's config directory to the mounted volume
