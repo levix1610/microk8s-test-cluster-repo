@@ -17,10 +17,10 @@ spec:
       labels:
         app: influxdb # Labels applied to the Pod(s)
     spec:
-      securityContext: #Seeing if running as admin will allow to deploy to NFS share. As it is messing with permissions.
-        runAsUser: 1024
-        runAsGroup: 1024
-        #fsGroup: <Your_Synology_Group_GID>
+      securityContext: #Need to add to run container as admin since NFS share is set to Map as admin.
+        runAsUser: 1024           #Running as admin
+        runAsGroup: 1024          #Running as admin
+        #fsGroup: <Group_GID>
       containers:
       - name: influxdb # Name for the container
         # Use a specific version tag is recommended over latest
