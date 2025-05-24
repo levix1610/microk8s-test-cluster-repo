@@ -18,6 +18,6 @@ spec:
     # - protocol: Usually TCP.
   - protocol: TCP
     # port: The port number the Service will listen on *within the cluster*.
-    port: 8099 # e.g., 80
+    port: 80 # e.g., 80
     # targetPort: The port on the Pods (containerPort) to forward traffic to. Can be the number or the name (e.g., 'http').
-    targetPort: 8099 # e.g., 8080 (must match containerPort in Deployment) or 'http' if named
+    targetPort: 80 # e.g., 8080 (must match containerPort in Deployment) or 'http' if named

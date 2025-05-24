@@ -23,7 +23,7 @@ spec:
       - name: heimdall
         image: lscr.io/linuxserver/heimdall:latest # e.g., your-repo/your-app:latest
         ports:
-        - containerPort: 8099 # The port your application listens on INSIDE the container (e.g., 8080)
+        - containerPort: 80 # The port your application listens on INSIDE the container (e.g., 8080)
           name: heimdall-port # Optional name for the port
         # volumeMounts: Mounts the volume requested by the PVC into the container.
         volumeMounts:
