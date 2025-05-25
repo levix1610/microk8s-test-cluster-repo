@@ -5,16 +5,16 @@ metadata:
   # A unique name for the PostgreSQL Deployment
   name: postgres-deployment
   labels:
-    app: postgresSQL # Label for selection by the Service
+    app: postgreSQL # Label for selection by the Service
 spec:
   replicas: 1 # Databases usually run as a single replica unless you configure replication
   selector:
     matchLabels:
-      app: postgresSQL # Must match the labels on the Pod template
+      app: postgreSQL # Must match the labels on the Pod template
   template:
     metadata:
       labels:
-        app: postgresSQL # Labels applied to the Pod
+        app: postgreSQL # Labels applied to the Pod
     spec:
       containers:
       - name: postgres
@@ -67,4 +67,4 @@ spec:
       volumes:
       - name: postgres-data # Must match the name in volumeMounts
         persistentVolumeClaim:
-          claimName: postgres-pvc # Must match the metadata.name of the PVC
+          claimName: postgre-pvc # Must match the metadata.name of the PVC

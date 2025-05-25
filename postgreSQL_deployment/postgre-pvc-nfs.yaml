@@ -11,7 +11,7 @@ metadata:
     app: postgreSQL
 spec:
   accessModes:
-    - ReadWriteOnce  #needs to be Many since shared location
+    - ReadWriteMany  #needs to be Many since shared location
   resources:
     requests:
       storage: 10Gi  #Must be equal or less than PV claim
