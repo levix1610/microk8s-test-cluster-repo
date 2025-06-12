@@ -31,7 +31,7 @@ spec:
           # Must be the Cluster IP 'name' defined in the yaml
           value: "postgre-clusterip-svc"
         - name: DATABASE_PORT
-          value: 5432 # Standard PostgreSQL port
+          value: "5432" # Standard PostgreSQL port
         - name: DATABASE_NAME
           valueFrom:
             secretKeyRef:
