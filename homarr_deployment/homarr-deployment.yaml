@@ -24,6 +24,12 @@ spec:
           name: homarr-port
         # --- ADD THESE ENVIRONMENT VARIABLES ---
         env:
+        #homarr internal encryption key
+        - name: SECRET_ENCRYPTION_KEY
+          valueFrom:
+            secretKeyRef:
+              name: homarr-secrets
+              key: SECRET_ENCRYPTION_KEY
         - name: DATABASE_TYPE
           value: "postgres" # Tell Homarr to use PostgreSQL
         - name: DATABASE_HOST
