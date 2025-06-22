@@ -22,11 +22,6 @@ spec:
         ports:
         - containerPort: 7575
           name: homarr-port
-        #Security Context to run container as admin
-        securityContext:
-          runAsUser: 1000
-          runAsGroup: 1000
-          fsGroup: 1000
         # --- ADD THESE ENVIRONMENT VARIABLES ---
         env:
         #homarr internal encryption key
@@ -62,15 +57,11 @@ spec:
         volumeMounts:  #Mounted volumes for storage of homarr.
           - name: homarr-data
             mountPath: /app/data/configs #directory for configs folders.
-            subPath: configs  #Mount configs sub-folder from the PVC.
-            #mount custom icons directory
-          - name: homarr-data  
-            mountPath: /app/data/icons
-            subPath: data-icons #Mount the data-icons sub-folder from the PVC.
-            #mount public cached icons directory
-          - name: homarr-data
-            mountPath: /app/public/icons
-            subPath: public-icons #Mount the public-icons sub-folder from the PVC.
+             #Security Context to run container as admin
+            securityContext:
+              runAsUser: 1000
+              runAsGroup: 1000
+              fsGroup: 1000  
         resources:
            requests:
              memory: "64Mi"
