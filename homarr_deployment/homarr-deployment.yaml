@@ -56,7 +56,7 @@ spec:
         # --- END OF ADDED ENVIRONMENT VARIABLES ---
         volumeMounts:  #Mounted volumes for storage of homarr.
           - name: homarr-data
-            mountPath: /app/data/configs #directory for configs folders.
+            mountPath: /appdata #directory for configs folders.
         resources:
            requests:
              memory: "64Mi"
