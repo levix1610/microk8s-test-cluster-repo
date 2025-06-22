@@ -16,9 +16,6 @@ spec:
       labels:
         app: homarr
     spec:
-      securityContext: #Need to add to run container as admin since NFS share is set to Map as admin.
-        runAsUser: 1024           #Running as admin
-        runAsGroup: 1024          #Running as admin
       containers:
       - name: homarr
         image: ghcr.io/homarr-labs/homarr:latest
