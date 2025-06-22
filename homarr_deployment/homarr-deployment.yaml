@@ -54,16 +54,25 @@ spec:
               name: postgres-secret # Use the same secret
               key: POSTGRES_PASSWORD
         # --- END OF ADDED ENVIRONMENT VARIABLES ---
-        volumeMounts:
+        volumeMounts:  #Mounted volumes for storage of homarr.
           - name: homarr-data
-            mountPath: /app/data # Homarr config/icons still need persistent storage
+            mountPath: /app/data/configs #directory for configs folders.
+            subPath: configs  #Mount configs sub-folder from the PVC.
+            #mount custom icons directory
+          - name: homarr-data  
+            mountPath: /app/data/icons
+            subPath: data-icons #Mount the data-icons sub-folder from the PVC.
+            #mount public cached icons directory
+          - name: homarr-data
+            mountPath: /app/public/icons
+            subPath: public-icons #Mount the public-icons sub-folder from the PVC.
         resources:
            requests:
              memory: "64Mi"
              cpu: "100m"
            limits:
              memory: "512Mi"
-             cpu: "1000m"
+             cpu: "750m"
       volumes:
        - name: homarr-data
          persistentVolumeClaim:
