@@ -17,4 +17,4 @@ spec:
   persistentVolumeReclaimPolicy: Retain # Or Recycle/Delete, choose what happens to the NFS data when the PV is released
   nfs:
     server: 10.0.100.20 # Replace with the actual IP or hostname of your NFS server
-    path: /mnt/storage_pool/k3s/nginx # Replace with the actual export path on your NFS server
+    path: /mnt/storage_pool/microk8s/nginx # Replace with the actual export path on your NFS server

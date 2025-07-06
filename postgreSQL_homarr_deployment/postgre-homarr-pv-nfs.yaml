@@ -19,4 +19,4 @@ spec:
   nfs:
     server: 10.0.100.20 # Replace with the actual IP or hostname of your NFS server / ex. 10.0.150.10
     #Path defined here HAS to exist in the directory. Will NOT create a directory for the app.
-    path: /mnt/storage_pool/k3s/postgreHomarr # Replace with the actual export path on your NFS server / ex. /volume1/microk8s/nginx
+    path: /mnt/storage_pool/microk8s/postgreHomarr # Replace with the actual export path on your NFS server / ex. /volume1/microk8s/nginx
