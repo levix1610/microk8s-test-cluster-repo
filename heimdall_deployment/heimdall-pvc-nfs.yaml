@@ -10,11 +10,12 @@ metadata:
   labels:
     app: heimdall
 spec:
+  storageClassName: nfs
   accessModes:
-    - ReadWriteMany  #needs to be Many since shared location
+    - ReadWriteMany
   resources:
     requests:
-      storage: 5Gi  #Must be equal or less than PV claim
+      storage: 10Gi  #Must be equal or less than PV claim
   selector:
     matchLabels:
       app: heimdall # This label should match the labels of your PV

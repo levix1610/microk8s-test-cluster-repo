@@ -6,6 +6,7 @@ kind: Service
 metadata:
   # name: A unique name for the NodePort service.
   name: homarr-nodeport-svc
+  namespace: homarr
   labels:
     app: homarr
 spec:

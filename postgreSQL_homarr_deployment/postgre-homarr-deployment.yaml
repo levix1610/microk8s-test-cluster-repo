@@ -3,50 +3,51 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   # A unique name for the PostgreSQL Deployment
-  name: postgres-deployment
+  name: postgres-homarr-deployment
+  namespace: homarr
   labels:
-    app: postgreSQL # Label for selection by the Service
+    app: postgreHomarr # Label for selection by the Service
 spec:
   replicas: 1 # Databases usually run as a single replica unless you configure replication
   selector:
     matchLabels:
-      app: postgreSQL # Must match the labels on the Pod template
+      app: postgreHomarr # Must match the labels on the Pod template
   template:
     metadata:
       labels:
-        app: postgreSQL # Labels applied to the Pod
+        app: postgreHomarr # Labels applied to the Pod
     spec:
       securityContext: #Need to add to run container as admin since NFS share is set to Map as admin.
         runAsUser: 1024           #Running as admin
         runAsGroup: 1024          #Running as admin
         #fsGroup: <Group_GID>
       containers:
-      - name: postgres
+      - name: postgres-Homarr
         # Use an official Postgres image. Consider pinning to a specific version (e.g., postgres:15) for stability.
         image: postgres:latest
         ports:
         - containerPort: 5432 # Standard PostgreSQL port
-          name: postgres-port
+          name: postgres-homarr-port
         # Environment variables sourced from the Secret
         env:
         - name: POSTGRES_DB
           valueFrom:
             secretKeyRef:
-              name: postgres-secret # Name of the Secret object
+              name: postgres-homarr-secret # Name of the Secret object
               key: POSTGRES_DB    # Key within the Secret
         - name: POSTGRES_USER
           valueFrom:
             secretKeyRef:
-              name: postgres-secret
+              name: postgres-homarr-secret
               key: POSTGRES_USER
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: postgres-secret
+              name: postgres-homarr-secret
               key: POSTGRES_PASSWORD
         # Mount the persistent volume
         volumeMounts:
-        - name: postgres-data # Must match the volume name defined below
+        - name: postgres-homarr-data # Must match the volume name defined below
           # Default data directory for the postgres image
           mountPath: /var/lib/postgresql/data
         # --- Optional but Recommended ---
@@ -69,6 +70,6 @@ spec:
         #   timeoutSeconds: 5
       # Define the volume linked to the PVC
       volumes:
-      - name: postgres-data # Must match the name in volumeMounts
+      - name: postgres-homarr-data # Must match the name in volumeMounts
         persistentVolumeClaim:
-          claimName: postgre-pvc # Must match the metadata.name of the PVC
+          claimName: postgre-homarr-pvc # Must match the metadata.name of the PVC

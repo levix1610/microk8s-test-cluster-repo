@@ -9,12 +9,13 @@ metadata:
   labels:
     app: heimdall
 spec:
+  storageClassName: nfs
   capacity:
-    storage: 5Gi # Must match or exceed the PVC request
+    storage: 10Gi # Must match or exceed the PVC request
   accessModes:
-    - ReadWriteMany #same as PVC for shared location.
+    - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain # Or Recycle/Delete, choose what happens to the NFS data when the PV is released
   nfs:
-    server: 10.0.150.10 # Replace with the actual IP or hostname of your NFS server / ex. 10.0.150.10
+    server: 10.0.100.20 # Replace with the actual IP or hostname of your NFS server / ex. 10.0.150.10
     #Path defined here HAS to exist in the directory. Will NOT create a directory for the app.
-    path: /volume1/microk8s/heimdall # Replace with the actual export path on your NFS server / ex. /volume1/microk8s/nginx
+    path: /mnt/storage_pool/k3s/heimdall # Replace with the actual export path on your NFS server / ex. /volume1/microk8s/nginx

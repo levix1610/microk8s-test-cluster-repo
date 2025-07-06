@@ -4,6 +4,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: homarr-deployment
+  namespace: homarr
   labels:
     app: homarr
 spec:
@@ -35,23 +36,23 @@ spec:
         - name: DATABASE_HOST
           # Use the name of the PostgreSQL Service created above
           # Must be the Cluster IP 'name' defined in the yaml
-          value: "postgre-clusterip-svc"
+          value: "postgre-homarr-clusterip-svc"
         - name: DATABASE_PORT
           value: "5432" # Standard PostgreSQL port
         - name: DATABASE_NAME
           valueFrom:
             secretKeyRef:
-              name: postgres-secret # Use the same secret
+              name: postgres-homarr-secret # Use the same secret
               key: POSTGRES_DB
         - name: DATABASE_USERNAME
           valueFrom:
             secretKeyRef:
-              name: postgres-secret # Use the same secret
+              name: postgres-homarr-secret # Use the same secret
               key: POSTGRES_USER
         - name: DATABASE_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: postgres-secret # Use the same secret
+              name: postgres-homarr-secret # Use the same secret
               key: POSTGRES_PASSWORD
         # --- END OF ADDED ENVIRONMENT VARIABLES ---
         volumeMounts:  #Mounted volumes for storage of homarr.

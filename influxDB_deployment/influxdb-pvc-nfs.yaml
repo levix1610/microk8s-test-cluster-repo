@@ -10,8 +10,9 @@ metadata:
   labels:
     app: influxdb
 spec:
+  storageClassName: nfs
   accessModes:
-    - ReadWriteMany  #needs to be Many since shared location
+    - ReadWriteMany
   resources:
     requests:
       storage: 10Gi  #Must be equal or less than PV claim
