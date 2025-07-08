@@ -60,9 +60,9 @@ spec:
       #Mount Path for NFS shares housing Media.
       - name: media-movies  #Volume definition for movies
         nfs:
-          server: 10.0.150.10
-          path: /volume1/Movies
+          server: 10.0.100.20
+          path: /mnt/storage_pool/Movies
       - name: media-tv     #Volume definition for TV shows
         nfs:
-          server: 10.0.150.10
-          path: /volume1/TvShows
+          server: 10.0.100.20
+          path: /mnt/storage_pool/TvShows
