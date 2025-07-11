@@ -27,7 +27,7 @@ spec:
         image: postgres:latest
         ports:
         - containerPort: 5432 # Standard PostgreSQL port
-          name: postgres-homarr-port
+          name: postgres-h-port
         # Environment variables sourced from the Secret
         env:
         - name: POSTGRES_DB
