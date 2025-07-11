@@ -20,7 +20,7 @@ spec:
       securityContext: #Need to add to run container as admin since NFS share is set to Map as admin.
         runAsUser: 1024           #Running as admin
         runAsGroup: 1024          #Running as admin
-        #fsGroup: 999
+        fsGroup: 999
       containers:
       - name: postgres-homarr
         # Use an official Postgres image. Consider pinning to a specific version (e.g., postgres:15) for stability.
