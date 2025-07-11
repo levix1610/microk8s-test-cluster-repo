@@ -10,7 +10,7 @@ metadata:
   labels:
     app: postgrehomarr
 spec:
-  storageClassName: nfs
+  #storageClassName: nfs
   capacity:
     storage: 10Gi # Must be equal to or greater than the pvc claim
   accessModes:
