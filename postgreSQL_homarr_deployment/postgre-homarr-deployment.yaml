@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   # A unique name for the PostgreSQL Deployment
   name: postgres-homarr-deployment
-  namespace: homarr
+  #namespace: homarr
   labels:
     app: postgrehomarr # Label for selection by the Service
 spec:
