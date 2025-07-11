@@ -8,7 +8,7 @@ metadata:
   name: postgre-homarr-pv # A unique name for your PV
   namespace: homarr
   labels:
-    app: postgreHomarr
+    app: postgrehomarr
 spec:
   storageClassName: nfs
   capacity:

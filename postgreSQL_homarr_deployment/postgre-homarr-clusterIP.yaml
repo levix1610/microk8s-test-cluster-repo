@@ -8,7 +8,7 @@ metadata:
   name: postgre-homarr-clusterip-svc
   namespace: homarr
   labels:
-    app: postgreHomarr
+    app: postgrehomarr
 spec:
   # type: ClusterIP is the default, but explicitly stating it is clearer.
   type: ClusterIP

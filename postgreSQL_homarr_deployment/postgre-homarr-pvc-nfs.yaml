@@ -9,7 +9,7 @@ metadata:
   name: postgre-homarr-pvc  #pvc claim name
   namespace: homarr
   labels:
-    app: postgreHomarr
+    app: postgrehomarr
 spec:
   storageClassName: nfs
   accessModes:
