@@ -14,7 +14,7 @@ spec:
   type: ClusterIP
   # selector: Selects the Pods to send traffic to. Must match the labels on the Pods (spec.template.metadata.labels).
   selector:
-    app: postgreHomarr
+    app: postgrehomarr
   ports:
     # - protocol: Usually TCP.
   - protocol: TCP

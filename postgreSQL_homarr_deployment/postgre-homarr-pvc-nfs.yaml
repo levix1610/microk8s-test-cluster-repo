@@ -19,4 +19,4 @@ spec:
       storage: 10Gi  #Must be equal or less than PV claim
   selector:
     matchLabels:
-      app: postgreHomarr # This label should match the labels of your PV
+      app: postgrehomarr # This label should match the labels of your PV
