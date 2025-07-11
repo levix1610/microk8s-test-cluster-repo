@@ -61,8 +61,8 @@ spec:
       - name: media-movies  #Volume definition for movies
         nfs:
           server: 10.0.100.20
-          path: /mnt/storage_pool/Movies
+          path: /mnt/storage_pool/smb/movies
       - name: media-tv     #Volume definition for TV shows
         nfs:
           server: 10.0.100.20
-          path: /mnt/storage_pool/TvShows
+          path: /mnt/storage_pool/smb/tvshows
