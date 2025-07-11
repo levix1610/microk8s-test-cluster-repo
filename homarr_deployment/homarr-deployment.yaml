@@ -4,7 +4,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: homarr-deployment
-  namespace: homarr
+  #namespace: homarr
   labels:
     app: homarr
 spec:
