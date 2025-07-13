@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: jellyfin-service
+  name: jellyfin-external
   #namespace: default # Or your namespace
 spec:
   selector:
