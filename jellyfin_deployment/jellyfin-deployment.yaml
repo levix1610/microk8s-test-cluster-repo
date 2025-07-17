@@ -24,7 +24,9 @@ spec:
         image: lscr.io/linuxserver/jellyfin:latest # e.g., your-repo/your-app:latest
         ports:
         - containerPort: 8096 # The port your application listens on INSIDE the container (e.g., 8080)
-          name: jellyfin-port # Optional name for the port
+          name: jellyfin-http # http port for jellyfin container.
+        - containerPort: 8920
+          name: jellyfin-https # https port for jellyfin container.
         # volumeMounts: Mounts the volume requested by the PVC into the container.
         volumeMounts:
         - name: jellyfin-data # Must match the volume name defined below in spec.volumes
@@ -61,8 +63,8 @@ spec:
       - name: media-movies  #Volume definition for movies
         nfs:
           server: 10.0.100.20
-          path: /mnt/storage_pool/smb/movies
+          path: /mnt/storage_pool/smb/movies #path to the remote NFS share the data lives in.
       - name: media-tv     #Volume definition for TV shows
         nfs:
           server: 10.0.100.20
-          path: /mnt/storage_pool/smb/tvshows
+          path: /mnt/storage_pool/smb/tvshows #path to the remote NFS share the data lives in.
