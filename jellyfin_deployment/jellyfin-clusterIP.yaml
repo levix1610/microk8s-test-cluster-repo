@@ -15,9 +15,14 @@ spec:
   selector:
     app: jellyfin
   ports:
-    # - protocol: Usually TCP.
-  - protocol: TCP
-    # port: The port number the Service will listen on *within the cluster*.
-    port: 8096 # e.g., 80
-    # targetPort: The port on the Pods (containerPort) to forward traffic to. Can be the number or the name (e.g., 'http').
-    targetPort: 8096 # e.g., 8080 (must match containerPort in Deployment) or 'http' if named
+    # HTTP Port
+    - protocol: TCP
+      port: 8096
+      targetPort: 8096
+      name: http
+
+    #HTTPS Port
+    - protocol: TCP
+      port: 8920
+      targetPort: 8920
+      name: https
