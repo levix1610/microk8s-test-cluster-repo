@@ -9,7 +9,7 @@ metadata:
 spec:
   type: ClusterIP # Default type, stable internal IP
   selector:
-    app: influxdb # Selects Pods with the 'app=influxdb' label
+    app: influxdb # Selects Pods with the 'app: influxdb' label
   ports:
   - protocol: TCP
     port: 8086         # Port the service listens on
