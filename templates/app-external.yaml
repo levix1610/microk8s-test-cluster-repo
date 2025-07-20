@@ -1,0 +1,18 @@
+# LoadBalancing Service for exposing services directly to an IP address.
+# Can optionally remove nodeport service once working. 
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-external
+  # namespace: default # Or your namespace
+spec:
+  selector:
+    app: <app-label> # This label should match your Jellyfin Deployment's pod labels
+  ports:
+    - protocol: TCP  # Protocol using to connect. 
+      port: 80       # External port for the Service (what you connect to) (80 for http or 443 for https ex.)
+      targetPort: 0000 # Internal port of the container deployment (Should match cluster IP and deployments target port#)
+      name: http
+  type: LoadBalancer # the type of service it is.  Tells cluster to use metalLB to expose on the LB to the target IP.
+  loadBalancerIP: 0.0.0.0 # target IP for the service.
+# test to see if can direct to container deployment without specifing the port.

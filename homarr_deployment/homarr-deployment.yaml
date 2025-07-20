@@ -22,8 +22,8 @@ spec:
         image: ghcr.io/homarr-labs/homarr:latest
         ports:
         - containerPort: 7575
-          name: homarr-port
-        # --- ADD THESE ENVIRONMENT VARIABLES ---
+          name: homarr-http
+        # --- ADD ENVIRONMENT VARIABLES ---
         env:
         #homarr internal encryption key
         - name: SECRET_ENCRYPTION_KEY
