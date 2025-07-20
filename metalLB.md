@@ -4,3 +4,4 @@
 # 10.0.100.21 - jellyfin
 # 10.0.100.30 - heimdall
 # 10.0.100.15 - influxdb 
+# 10.0.100.14 - grafana

@@ -24,7 +24,7 @@ spec:
         image: grafana/grafana:latest # e.g., your-repo/your-app:latest
         ports:
         - containerPort: 3000 # The port your application listens on INSIDE the container (e.g., 8080)
-          name: grafana-port # Optional name for the port
+          name: grafana-http # Optional name for the port
         # volumeMounts: Mounts the volume requested by the PVC into the container.
         volumeMounts:
         - name: app-data # Must match the volume name defined below in spec.volumes

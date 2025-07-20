@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-external
+  #namespace: default # Or your namespace
+spec:
+  selector:
+    app: grafana # This label should match your Deployment's pod labels
+  ports:
+    - protocol: TCP
+      port: 80       # External port for the Service (what you connect to)
+      targetPort: 3000 # Internal port of the container deployment
+      name: http
+  type: LoadBalancer 
+  loadBalancerIP: 10.0.100.14 #target IP for the service.
+#test to see if can direct to container deployment without specifing the port.
