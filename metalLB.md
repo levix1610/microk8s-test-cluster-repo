@@ -7,4 +7,5 @@
 # 10.0.100.15 - influxdb 
 # 10.0.100.14 - grafana
 # 10.0.100.31 - homarr
-
+# 10.0.100.35 - Ubuntu Desktop Container
+# 10.0.100.2  - PiHole DNS

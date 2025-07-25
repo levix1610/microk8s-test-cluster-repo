@@ -1,0 +1,21 @@
+# --- PersistentVolumeClaim (PVC) ---
+# This requests persistent storage from the cluster.
+# This is used with app-pv-nfs.yaml and need to be deplopyed first before this yaml,
+# so the PV exists for this PVC to bind to. So the storage is defined in the cluster. 
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pihole-pvc # PVC Claim name.
+  labels: 
+    app: pihole
+spec:
+  storageClassName: nfs
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi # Must be equal to or less than the PV claim.
+  selector:
+    matchLabels:
+      app: pihole # This label should match the labels of your PV and APP. 
