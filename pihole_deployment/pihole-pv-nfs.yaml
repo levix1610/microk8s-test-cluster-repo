@@ -13,7 +13,7 @@ spec:
   capacity:
     storage: 10Gi # Space requested and maximum PVC can request.
   accessModes:
-    -ReadWriteMany
+    - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain # So data persists on the PV even after deletion.
   nfs:
     server: 10.0.100.20 # Remote address of the NFS share the PV will be housed on.
