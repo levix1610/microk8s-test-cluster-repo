@@ -7,7 +7,7 @@ metadata:
   labels:
     app: ubuntu-kasm
 spec:
-  replicas: 1
+  replicas: 1 # Multiple instances not beneficial to this kind of deployment and would be too much of a resource strain.
   selector:
     matchLabels:
       app: ubuntu-kasm
@@ -24,15 +24,15 @@ spec:
           name: ubuntu-kasm-https
         volumeMounts:
         - name: ubuntu-kasm-data
-          mountPath: /home/kasm # Mount path for data. (will need to test.)
+          mountPath: /home/kasm # Mount path for data. (will need to test.) Path as described is /home/{user}
         resources:
-          requests:
+          requests: # resource reuqests/limits. Making limits a bit higher as this is suppose to be a full desktop deployment.
             memory: "1024Mi"
             cpu: "1000m"
           limits:
             memory: "4096Mi"
             cpu: "4000m"
-        #env:
+        #env: 
         #- name: env_variable
         #  value: value
       volumes:

@@ -8,7 +8,7 @@ metadata:
   labels:
     app: pihole
 spec:
-  replicas: 1 # Will try two later on.
+  replicas: 1 # Will keep at 1 as multiple instances can cause issue.
   selector:
     # Must match the labels on the Pod template below and all other services.
     matchLabels:
