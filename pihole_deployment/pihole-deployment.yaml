@@ -23,7 +23,7 @@ spec:
       - name: pihole
         image: pihole/pihole:2025.07.1 # repot/app:version.
         ports:
-        - containerPort: 443 # The port the application needs to connect to an HTTP web socket.
+        - containerPort: 443 # The port the application needs to connect to an HTTPS web socket.
           name: pihole-https # Name of the port.
         - containerPort: 53 # Port for the DNS traffic
           name: pihole-dns #Name of the port.

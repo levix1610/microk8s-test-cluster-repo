@@ -1,0 +1,17 @@
+# metalLB deployment file
+# States the address the LoadBalancer service type will use to expose app/service.
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ubuntu-kasm-external # Service name
+spec:
+  selector:
+    app: ubuntu-kasm
+  ports:
+    - name: https
+      protocol: TCP
+      port: 443 # external HTTPS port.
+      targetPort: 6901 # Port defined by kasm workspace for this container.
+  type: LoadBalancer
+  loadBalancerIP: "10.0.100.35" # specify IP address of the service.

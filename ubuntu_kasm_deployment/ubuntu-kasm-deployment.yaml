@@ -1,0 +1,46 @@
+# --- Deployment ---
+# Pod deployment of your containerized app
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntu-kasm-deployment
+  labels:
+    app: ubuntu-kasm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ubuntu-kasm
+  template:
+    metadata:
+      labels:
+        app: ubuntu-kasm
+    spec:
+      containers:
+      - name: ubuntu-kasm
+        image: kasmweb/core-ubuntu-noble:1.16.0-rolling-daily
+        ports:
+        - containerPort: 6901 # Port the container will connect on.
+          name: ubuntu-kasm-https
+        volumeMounts:
+        - name: ubuntu-kasm-data
+          mountPath: /home/kasm # Mount path for data. (will need to test.)
+        resources:
+          requests:
+            memory: "1024Mi"
+            cpu: "1000m"
+          limits:
+            memory: "4096Mi"
+            cpu: "4000m"
+        #env:
+        #- name: env_variable
+        #  value: value
+      volumes:
+      - name: ubuntu-kasm-data # Same as name of volumeMounts.
+        persistentVolumeClaim:
+          claimName: ubuntu-kasm-pvc
+    
+            
+
+
+

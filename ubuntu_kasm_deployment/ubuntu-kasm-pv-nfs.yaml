@@ -1,0 +1,20 @@
+#PV needs to be deployed before the app-pvc-nfs.yaml file.
+#This tells kubernetes where the storage is and removes the need for NFS to be mounted to the host. 
+#PV is a static resource in the cluster well the PVC is the request of that resource.
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ubuntu-kasm-pv
+  labels:
+    app: ubuntu-kasm
+spec:
+  storageClassName: nfs
+  capacity:
+    storage: 20Gi # maximum space PVC can request
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain # Data persistence after pods deletion.
+  nfs:
+    server: 10.0.100.20 # Remote address of the NFS share the PV.
+    path: /mnt/storage_pool/microk8s/ubuntu_kasm
