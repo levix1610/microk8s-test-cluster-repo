@@ -22,3 +22,4 @@ spec:
   type: LoadBalancer
   # Optional: To request a specific IP from your MetalLB pool
   loadBalancerIP: "10.0.100.2"
+  externalTrafficPolicy: Local # Force the Service to no do any cross node hopping so the traffic goes to the pods hosting node. Should preserve the original hosts IP.
