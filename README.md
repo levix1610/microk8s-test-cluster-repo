@@ -50,3 +50,9 @@ My latest deployment was so far successful after some interesting problems that 
 What I learned from this was to either make sure the server has the IP you want as install or hold off on installing microk8s until the server DOES have the desinated IP you want.  
 
 I just had to make one minor adjustment to the mountPath for the volume on pihole.  As I followed the path pihole had in its documentations but that made the data get stored in the active Pod; not on the persistant NFS share.  Making it /etc/pihole works and all the data is now populated on the share and I gave the Pods a few deletes and everything stayed as configured. 
+
+Another aspect came up that it was showing the internal IPs of the piholes pod for ip addresses DNS requests.  I had to add to the loadBalancer service externalTrafficPolicy: Local; so the metalLB service would force the traffic over to the node that was hosting the pod and preserve the Local machines IP address within the piholes container in the pod.  Now its working as if it was a locally deployed DNS server on the host network. 
+
+There are some workloads that I will not move over to kubernetes as not all work well on it.  My observium SNMP server and my nextcloud instance will stay on ubuntu servers just due to the nature of how they work.  
+
+Next, I think I am going to look into trying to deploy some kind of deployment to get some better obervability into the cluster with some monitoring and possibly a vault instance for secrets housing.  
