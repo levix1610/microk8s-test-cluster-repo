@@ -21,7 +21,7 @@ spec:
         image: kasmweb/core-ubuntu-noble:1.16.0-rolling-daily
         ports:
         - containerPort: 6901 # Port the container will connect on.
-          name: ubuntu-kasm-https
+          name: ubuntu-http
         volumeMounts:
         - name: ubuntu-kasm-data
           mountPath: /home/kasm # Mount path for data. (will need to test.) Path as described is /home/{user}
