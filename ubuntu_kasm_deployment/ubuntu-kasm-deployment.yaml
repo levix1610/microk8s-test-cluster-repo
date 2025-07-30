@@ -24,7 +24,7 @@ spec:
           name: ubuntu-http
         volumeMounts:
         - name: ubuntu-kasm-data
-          mountPath: /home/kasm # Mount path for data. (will need to test.) Path as described is /home/{user}
+          mountPath: /home/kasm_user # Mount path for data. (will need to test.) Path as described is /home/{user}
         resources:
           requests: # resource reuqests/limits. Making limits a bit higher as this is suppose to be a full desktop deployment.
             memory: "1024Mi"
