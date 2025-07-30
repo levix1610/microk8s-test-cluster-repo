@@ -1,5 +1,6 @@
 # --- Deployment ---
 # Pod deployment of your containerized app
+# Fun test deployment and it does work but not sure what a good use for this exactly would be.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -35,6 +36,7 @@ spec:
         env: 
         - name: VNC_PW
           value: "testpassword"
+          # the default username is kasm_user to go along with this. Cannot change.  
       volumes:
       - name: ubuntu-kasm-data # Same as name of volumeMounts.
         persistentVolumeClaim:
