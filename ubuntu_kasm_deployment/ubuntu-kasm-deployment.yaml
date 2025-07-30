@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: ubuntu-kasm
-        image: kasmweb/core-ubuntu-noble:1.16.0-rolling-daily
+        image: kasmweb/ubuntu-noble-desktop:x86_64-1.17.0-rolling-daily
         ports:
         - containerPort: 6901 # Port the container will connect on.
           name: ubuntu-http
