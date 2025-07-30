@@ -32,9 +32,9 @@ spec:
           limits:
             memory: "4096Mi"
             cpu: "4000m"
-        #env: 
-        #- name: env_variable
-        #  value: value
+        env: 
+        - name: VNC_PW
+          value: "testpassword"
       volumes:
       - name: ubuntu-kasm-data # Same as name of volumeMounts.
         persistentVolumeClaim:
