@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: grafana
-        image: grafana/grafana:latest # e.g., your-repo/your-app:latest
+        image: grafana/grafana:12.2.0-17282025910 # updated 8/28/25
         ports:
         - containerPort: 3000 # The port your application listens on INSIDE the container (e.g., 8080)
           name: grafana-http # Optional name for the port
