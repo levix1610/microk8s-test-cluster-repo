@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: jellyfin
-        image: lscr.io/linuxserver/jellyfin:latest # e.g., your-repo/your-app:latest
+        image: lscr.io/linuxserver/jellyfin:10.10.7ubu2404-ls75 # update (8/28/25)
         ports:
         - containerPort: 8096 # The port your application listens on INSIDE the container (e.g., 8080)
           name: jellyfin-http # http port for jellyfin container.
