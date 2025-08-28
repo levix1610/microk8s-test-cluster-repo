@@ -24,7 +24,7 @@ spec:
       containers:
       - name: influxdb # Name for the container
         # Use a specific version tag is recommended over latest
-        image: influxdb:2.7.5 # Example: container:version
+        image: influxdb:2.7.12 # updated (8/28/25)
         ports:
           # Default InfluxDB v2 API port
         - containerPort: 8086
