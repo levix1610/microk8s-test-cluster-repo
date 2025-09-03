@@ -1,0 +1,29 @@
+# metalLB deployment file
+# States the address the LoadBalancer service type will use to expose app/service.
+# This service has port 53 also defined so DNS traffic can be directed to the pod.
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: pihole-mgmt-dns-external
+  #namespace: pihole
+spec:
+  selector:
+    app: pihole-mgmt
+  ports:
+    - name: dns-tcp
+      protocol: TCP
+      port: 53
+      targetPort: 53
+    - name: dns-udp
+      protocol: UDP
+      port: 53
+      targetPort: 53
+    - name: https
+      protocol: TCP
+      port: 443
+      targetPort: 443
+  type: LoadBalancer
+  # Optional: To request a specific IP from your MetalLB pool
+  loadBalancerIP: "10.0.250.2"
+  externalTrafficPolicy: Local # Preserves source IP; Forces traffic to local node of pod.

@@ -1,0 +1,51 @@
+# --- Deployment ---
+# Manages the Pods running your application container.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # Unique name for the deployment/
+  name: pihole-mgmt-deployment
+  labels:
+    app: pihole-mgmt
+spec:
+  replicas: 1 # Will keep at 1 as multiple instances can cause issue. SQLite does not do well with multiple instances writing to it at the same time. 
+  selector:
+    # Must match the labels on the Pod template below and all other services.
+    matchLabels:
+      app: pihole-mgmt
+  template:
+    metadata:
+      # Labels applied to the Pods created by this Deployment.  Must match spec.selector.matchLabels.
+      labels:
+        app: pihole-mgmt
+    spec:
+      containers:
+      - name: pihole-mgmt
+        image: pihole/pihole:2025.08.0 # repot/app:version. (updated to latest version 8/21/2025)
+        ports:
+        - containerPort: 443 # The port the application needs to connect to an HTTPS web socket.
+          name: pihole-https # Name of the port.
+        - containerPort: 53 # Port for the DNS traffic
+          name: pihole-dns #Name of the port.
+        # volumeMounts: Mounts the volume requested by the PVC into the container.
+        volumeMounts:
+        - name: pihole-data # Must match the volume name defined below in spec.volumes
+          # mountPath : The directory path inside the container where the storage will be accessible.
+          mountPath: /etc/pihole # e.g. /app/data or /var/www/html
+          # Not sure if this mount path will work but its what is defined in the container deployment.
+        # --- Optional but Recommended Resources limits ---
+        resources: 
+          requests:
+            memory: "256Mi"
+            cpu: "200m"
+          limits:
+            memory: "1024Mi"
+            cpu: "2000m"
+        # env:
+        # - name: TZ
+        #   value:
+      # volumes: Defines the volumes avilable to the Pod.
+      volumes:
+      - name: pihole-mgmt-data # defined name used in volumeMounts:
+        persistentVolumeClaim: # The PVC that was declared in the PVC yaml.
+          claimName: pihole-mgmt-pvc
