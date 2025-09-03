@@ -154,3 +154,5 @@ sudo systemctl status keepalived
 ```
 
 Try pinging the virtual IP chosen for the cluster and see if it responds.
+
+DEPRECIATED SINCE METALLB IS WORKING.
