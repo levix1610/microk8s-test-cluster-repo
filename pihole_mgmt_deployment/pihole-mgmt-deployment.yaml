@@ -45,9 +45,16 @@ spec:
           limits:
             memory: "1024Mi"
             cpu: "2000m"
-        # env:
-        # - name: TZ
-        #   value:
+        # Adding secret for web UI password in Deployment as POD lives in MGMT subnet that default subnet does not have access to.  Unable to exec to pod.  
+        # This needs to later on be move on to a proper Kubernetes encrypted secret.     
+        env:
+        - name: TZ
+          value: "America/New_York"
+        - name: FTLCONF_webserver_api_password
+          valueFrom:
+            secretKeyRef:
+              name: pihole-admin-secret
+              key: superPassword
       # volumes: Defines the volumes avilable to the Pod.
       volumes:
       - name: pihole-mgmt-data # defined name used in volumeMounts:
