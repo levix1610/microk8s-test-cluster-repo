@@ -50,7 +50,7 @@ spec:
         env:
         - name: TZ
           value: "America/New_York"
-        - name: FTLCONF_webserver_api_password
+        - name: WEBPASSWORD
           valueFrom:
             secretKeyRef:
               name: pihole-mgmt-secrets
