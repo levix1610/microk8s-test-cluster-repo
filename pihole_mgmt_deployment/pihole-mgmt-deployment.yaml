@@ -53,8 +53,8 @@ spec:
         - name: FTLCONF_webserver_api_password
           valueFrom:
             secretKeyRef:
-              name: pihole-admin-secret
-              key: superPassword
+              name: pihole-mgmt-secrets
+              key: password
       # volumes: Defines the volumes avilable to the Pod.
       volumes:
       - name: pihole-mgmt-data # defined name used in volumeMounts:
