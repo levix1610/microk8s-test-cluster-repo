@@ -19,6 +19,9 @@ spec:
       labels:
         app: pihole-mgmt
     spec:
+      # selector so the Pod will only run on worker nodes with multiple vlans.
+      nodeSelector:
+        node.kubernetes.io/microk8s-worker: microk8s-worker
       containers:
       - name: pihole-mgmt
         image: pihole/pihole:2025.08.0 # repot/app:version. (updated to latest version 8/21/2025)
@@ -27,9 +30,7 @@ spec:
           name: pihole-https # Name of the port.
         - containerPort: 53 # Port for the DNS traffic
           name: pihole-dns #Name of the port.
-      # selector so the Pod will only run on worker nodes with multiple vlans.
-      nodeSelector:
-        node.kubernetes.io/microk8s-worker: microk8s-worker
+      
         # volumeMounts: Mounts the volume requested by the PVC into the container.
         volumeMounts:
         - name: pihole-data # Must match the volume name defined below in spec.volumes
