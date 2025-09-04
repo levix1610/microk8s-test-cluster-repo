@@ -6,7 +6,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: pihole-mgmt-dns-external
-  #namespace: pihole
+  # namespace: pihole
+  # need to add annotation so the service knows to use the vlan-mgmt IP address pool.
+  annotations:
+    metallb.io/address-pool: vlan-mgmt
 spec:
   selector:
     app: pihole-mgmt
@@ -25,5 +28,5 @@ spec:
       targetPort: 443
   type: LoadBalancer
   # Optional: To request a specific IP from your MetalLB pool
-  loadBalancerIP: "10.0.250.2"
+  loadBalancerIP: "10.0.250.210"
   externalTrafficPolicy: Local # Preserves source IP; Forces traffic to local node of pod.
