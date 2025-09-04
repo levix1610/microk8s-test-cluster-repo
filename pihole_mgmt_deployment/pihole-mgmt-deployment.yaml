@@ -50,7 +50,7 @@ spec:
         env:
         - name: TZ
           value: "America/New_York"
-        - name: WEBPASSWORD
+        - name: cli_pw
           valueFrom:
             secretKeyRef:
               name: pihole-mgmt-secrets
