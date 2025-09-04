@@ -9,8 +9,10 @@
 # 10.0.100.31 - homarr
 # 10.0.100.35 - Ubuntu Desktop Container
 # 10.0.100.2  - PiHole DNS
+# 10.0.100.3  - PiHole DNS MGMT
 
 # metalLB on Microk8s Cluster - MGMT VLAN NICs:
 # vmus-test-k8s-04 MGMT = 10.0.250.200
 # vmus-test-k8s-05 MGMT = 10.0.250.201
 # Assigned IPs: 10.0.250.210 - 10.0.250.220
+# 10.0.250.210 - PiHole DNS

@@ -50,11 +50,6 @@ spec:
         env:
         - name: TZ
           value: "America/New_York"
-        - name: cli_pw
-          valueFrom:
-            secretKeyRef:
-              name: pihole-mgmt-secrets
-              key: password
       # volumes: Defines the volumes avilable to the Pod.
       volumes:
       - name: pihole-mgmt-data # defined name used in volumeMounts:
