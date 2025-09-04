@@ -1,0 +1,15 @@
+# This YAML defines a new IPAddressPool resource for MetalLB.
+# Save this content to a file, for example, 'vlan-mgmt-pool.yaml'.
+# Specify the metalLB api and namespace.
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  # The name of the new IP address pool.
+  name: vlan-mgmt
+  namespace: metallb-system
+spec:
+  # Define the new IP address range here.
+  # Replace the example range with your desired IP addresses.
+  addresses:
+  - 10.0.250.210-10.0.250.220
+  autoAssign: true
