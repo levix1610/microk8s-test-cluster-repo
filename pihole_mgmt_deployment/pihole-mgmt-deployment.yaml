@@ -33,7 +33,7 @@ spec:
       
         # volumeMounts: Mounts the volume requested by the PVC into the container.
         volumeMounts:
-        - name: pihole-data # Must match the volume name defined below in spec.volumes
+        - name: pihole-mgmt-data # Must match the volume name defined below in spec.volumes
           # mountPath : The directory path inside the container where the storage will be accessible.
           mountPath: /etc/pihole # e.g. /app/data or /var/www/html
           # Not sure if this mount path will work but its what is defined in the container deployment.
