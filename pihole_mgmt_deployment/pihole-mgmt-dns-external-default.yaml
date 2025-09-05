@@ -9,7 +9,7 @@ metadata:
   #namespace: pihole
 spec:
   selector:
-    app: pihole
+    app: pihole-mgmt
   ports:
     - name: dns-tcp
       protocol: TCP
