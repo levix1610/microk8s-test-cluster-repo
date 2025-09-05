@@ -27,9 +27,9 @@ spec:
         image: pihole/pihole:2025.08.0 # repot/app:version. (updated to latest version 8/21/2025)
         ports:
         - containerPort: 443 # The port the application needs to connect to an HTTPS web socket.
-          name: pihole-mgmt-https # Name of the port.
+          name: pihole-m-https # Name of the port.
         - containerPort: 53 # Port for the DNS traffic
-          name: pihole-mgmt-dns #Name of the port.
+          name: pihole-m-dns #Name of the port.
       
         # volumeMounts: Mounts the volume requested by the PVC into the container.
         volumeMounts:
