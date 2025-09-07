@@ -17,14 +17,14 @@ spec:
       labels:
         app: postgrehomarr # Labels applied to the Pod
     spec:
-      securityContext: #Need to add to run container as admin since NFS share is set to Map as admin.
-        runAsUser: 0           #Running as admin
-        runAsGroup: 0         #Running as admin
+      securityContext: # Need to add to run container as admin since NFS share is set to Map as admin.
+        runAsUser: 0           # Running as admin
+        runAsGroup: 0         # Running as admin
         #fsGroup: 1024
       containers:
       - name: postgres-homarr
         # Use an official Postgres image. Consider pinning to a specific version (e.g., postgres:15) for stability.
-        image: postgres:latest
+        image: postgres:17.6-bookworm
         ports:
         - containerPort: 5432 # Standard PostgreSQL port
           name: postgres-h-port
