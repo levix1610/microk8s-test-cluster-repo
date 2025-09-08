@@ -5,7 +5,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pihole-pv #unique name for PV.
+  name: pihole-pv # unique name for PV.
   labels:
     app: pihole
 spec:

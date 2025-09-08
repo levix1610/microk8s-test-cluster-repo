@@ -6,6 +6,7 @@ kind: Service
 metadata:
   # name of the service unique to the cluster:
   name: pihole-clusterip-svc
+  namespace: pihole
   labels:
     app: pihole
 spec:

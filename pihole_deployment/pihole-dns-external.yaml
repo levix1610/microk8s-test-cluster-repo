@@ -6,7 +6,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: pihole-dns-external
-  #namespace: pihole
+  namespace: pihole
 spec:
   selector:
     app: pihole

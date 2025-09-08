@@ -5,6 +5,7 @@ kind: Deployment
 metadata:
   # Unique name for the deployment/
   name: pihole-deployment
+  namespace: pihole
   labels:
     app: pihole
 spec:
