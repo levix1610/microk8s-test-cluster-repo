@@ -1,0 +1,19 @@
+# --- ClusterIP Service ---
+# Expose the application Pod(s) on an internal IP 'within' the cluster
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: plex-clusterip-svc
+  namespace: media
+  labels:
+    app: plex
+spec:
+  type: ClusterIP # Types of service it is. 
+  selector:
+    app: plex
+  ports:
+    - protocol: TCP # HTTP port access to PLEX.
+      port: 32400
+      targetPort: 32400
+      name: http

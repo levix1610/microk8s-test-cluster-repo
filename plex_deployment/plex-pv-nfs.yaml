@@ -1,0 +1,21 @@
+# PV needs to be deployed before the app-pvc-nfs.yaml file.
+# This tells kubernetes where the storage is and removes the need for NFS to be mounted to the host. 
+# PV is a static resource in the cluster well the PVC is the request of that resource.
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: plex-pv # unique pv name.
+  namespace: media
+  labels:
+    app: plex
+spec:
+  storageClassName: nfs # Type of storage being used.
+  capacity:
+    storage: 25Gi # Max storage a PVC can claim.
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain # Keeps data even after PV deletion.
+  nfs:
+    server: 10.0.100.20 # NFS target IP.
+    path: /mnt/storage_pool/microk8s/plex # Target Path. Check that end directory is created.
