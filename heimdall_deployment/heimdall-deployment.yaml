@@ -8,7 +8,8 @@ metadata:
   labels:
     app: heimdall
 spec:
-  replicas: 1 # e.g., 2
+  replicas: 1
+  revisionHistoryLimit: 2  # Max number of replicasets
   selector:
     # Must match the labels on the Pod template below.
     matchLabels:
@@ -21,7 +22,7 @@ spec:
     spec:
       containers:
       - name: heimdall
-        image: lscr.io/linuxserver/heimdall:latest # e.g., your-repo/your-app:latest
+        image: lscr.io/linuxserver/heimdall:2.7.5 # e.g., your-repo/your-app:latest
         ports:
         - containerPort: 80 # The port your application listens on INSIDE the container (e.g., 8080)
           name: heimdall-port # Optional name for the port
