@@ -16,5 +16,5 @@ spec:
       targetPort: 8920 # Internal HTTPS port; if applicable. 
       name: https
   type: LoadBalancer 
-  loadBalancerIP: 10.0.100.21 #target IP for the service.
-#test to see if can direct to container deployment without specifing the port.
+  loadBalancerIP: 10.0.100.21 # target IP for the service.
+# test to see if can direct to container deployment without specifing the port.

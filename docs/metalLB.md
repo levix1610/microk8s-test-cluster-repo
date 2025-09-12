@@ -2,6 +2,7 @@
 # Assigned IPs: 10.0.100.2 - 10.0.100.35
 # IP 10.0.100.20 is reserved for TrueNAS NFS storage server for the cluster - DO NOT USE.
 
+# 10.0.100.22 - Plex
 # 10.0.100.21 - jellyfin
 # 10.0.100.30 - heimdall
 # 10.0.100.15 - influxdb 
@@ -16,3 +17,4 @@
 # vmus-test-k8s-05 MGMT = 10.0.250.201
 # Assigned IPs: 10.0.250.210 - 10.0.250.220
 # 10.0.250.210 - PiHole DNS
+# 10.0.250.215 - Plex
