@@ -9,7 +9,8 @@ metadata:
   labels:
     app: plex
 spec:
-  replicas: 1
+  replicas: 1 # Max number of pods at a given time.
+  revisionHistoryLimit: 2  # Max number of replicasets.
   selector:
     matchLabels:
       app: plex
