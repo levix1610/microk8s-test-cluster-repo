@@ -16,8 +16,8 @@ spec:
       app: plex
   template:
     metadata:
-    labels:  # Labels applied to the Pods created by this Deployment. Must match spec.selector.matchLabels.
-      app: plex
+      labels:  # Labels applied to the Pods created by this Deployment. Must match spec.selector.matchLabels.
+        app: plex
     spec:
       containers:
       - name: plex
