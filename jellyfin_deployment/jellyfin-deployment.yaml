@@ -5,6 +5,7 @@ kind: Deployment
 metadata:
   # name: A unique name for your Deployment.
   name: jellyfin-deployment
+  namespace: media
   labels:
     app: jellyfin
 spec:

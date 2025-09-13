@@ -6,6 +6,7 @@ kind: Service
 metadata:
   # name: A unique name for the ClusterIP service.
   name: jellyfin-clusterip-svc
+  namespace: media
   labels:
     app: jellyfin
 spec:

@@ -7,6 +7,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: jellyfin-pvc  #pvc claim name
+  namespace: media
   labels:
     app: jellyfin
 spec:
