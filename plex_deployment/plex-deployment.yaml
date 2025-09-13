@@ -1,0 +1,53 @@
+# --- Deployment ---
+# Manages the Pods running your application container.
+
+apiVersion: app/v1
+kind: Deployment
+metadata:
+  name: plex-deployment
+  namespace: media
+  labels:
+    app: plex
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: plex
+  template:
+    metadata:
+    labels:  # Labels applied to the Pods created by this Deployment. Must match spec.selector.matchLabels.
+      app: plex
+    spec:
+      containers:
+      - name: plex
+        image: linuxserver/plex:1.42.1 # updated 9/13/25
+        ports:
+        - containerPort: 32400 # The port your application listens on INSIDE the container.
+          name: plex-http # http port for the plex container
+        volumeMounts:
+        - name: plex-data # Name of storage for containers data.
+          mountPath: /config # matches storage path as defined for the container. See: https://hub.docker.com/r/linuxserver/plex
+        - name: media-movies # Name for mount of remote movies directory.
+          mountPath: /media/movies
+        - name: media-tv # Name for mount of remote TV shows directory.
+          mountPath: /media/tv
+        # --- Resource Limits - Necessary so media server does not saturate resources ---  
+        resources:
+          requests:  # Minimum it requests for the POD.
+            memory: "512Mi"
+            cpu: "1000m"
+          limits: # Max resources it can use.
+            memory: "2048Mi"
+            cpu: "3000m"
+      volumes: # Defines the data stores.
+      - name: plex-data # Match from above volumeMounts. Hold container data.
+        persistentVolumeClaim: # Uses defined PVC to mount for data storage.
+          claimName: plex-pvc # same as defined in pvc yaml.
+      - name: media-movies # Volume mount for movies directory NFS share.
+        nfs:
+          server: 10.0.100.20
+          path: /mnt/storage_pool/smb/movies # Path to the remote NFS share data.
+      - name: media-tv # Volume mount for the tv shows directory NFS share.
+        nfs:
+          server: 10.0.100.20
+          path: /mnt/storage_pool/smb/tvshows # Path to the remote NFS share data.
