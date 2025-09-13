@@ -19,6 +19,9 @@ spec:
       labels:  # Labels applied to the Pods created by this Deployment. Must match spec.selector.matchLabels.
         app: plex
     spec:
+      # selector so the Pod will only run on worker nodes with multiple vlans.
+      nodeSelector:
+        node.kubernetes.io/microk8s-worker: microk8s-worker
       containers:
       - name: plex
         image: linuxserver/plex:1.42.1 # updated 9/13/25
