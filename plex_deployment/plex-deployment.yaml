@@ -22,6 +22,9 @@ spec:
       containers:
       - name: plex
         image: linuxserver/plex:1.42.1 # updated 9/13/25
+        env:
+        - name: PLEX_CLAIM # Environmental variable to claim server on creation.
+          value: "claim-xxxxxxxxxxxx" # add in claim ID here.
         ports:
         - containerPort: 32400 # The port your application listens on INSIDE the container.
           name: plex-http # http port for the plex container
