@@ -25,7 +25,7 @@ spec:
       containers:
       - name: plex
         image: linuxserver/plex:1.42.1 # updated 9/13/25
-        # env: # Once server is claimed this env section can be commented out.
+        # env: # Once server is claimed this env section can be commented out.  Need to look into making a secret in the future.
         # - name: PLEX_CLAIM # Environmental variable to claim server on creation.
         #   value: "claim-xxxxxxxxxxxx" # add in claim ID here.
         ports:
