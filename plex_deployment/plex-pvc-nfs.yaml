@@ -11,7 +11,7 @@ metadata:
   labels:
     app: plex
 spec:
-  storageClassName: 
+  storageClassName: nfs
   accessModes:
     - ReadWriteMany
   resources:
