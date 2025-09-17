@@ -6,7 +6,7 @@ kind: Service
 metadata:
   # name: A unique name for the ClusterIP service.
   name: homarr-clusterip-svc
-  #namespace: homarr
+  namespace: homarr
   labels:
     app: homarr
 spec:

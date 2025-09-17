@@ -7,7 +7,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: postgre-homarr-pvc  #pvc claim name
-  #namespace: homarr
+  namespace: homarr
   labels:
     app: postgrehomarr
 spec:

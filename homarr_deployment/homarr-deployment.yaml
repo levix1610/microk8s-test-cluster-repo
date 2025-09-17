@@ -4,11 +4,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: homarr-deployment
-  #namespace: homarr
+  namespace: homarr
   labels:
     app: homarr
 spec:
-  replicas: 1 # e.g., 2
+  replicas: 1 # one replica; multiples can cause issues with homarr
+  revisionHistoryLimit: 2  # Max number of replicasets
   selector:
     matchLabels:
       app: homarr

@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: homarr-external
-  #namespace: default # Or your namespace
+  namespace: homarr
 spec:
   selector:
     app: homarr # This label should match your Jellyfin Deployment's pod labels
