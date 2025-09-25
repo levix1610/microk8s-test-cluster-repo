@@ -2,9 +2,8 @@
 # Assigned IPs: 10.0.100.2 - 10.0.100.35
 # IP 10.0.100.20 is reserved for TrueNAS NFS storage server for the cluster - DO NOT USE.
 # Run this command to see the config of the MetalLB of the cluster
-'''
-microk8s kubectl get ipaddresspools -n metallb-system -o yaml
-'''
+```microk8s kubectl get ipaddresspools -n metallb-system -o yaml```
+
 
 # 10.0.100.22 - Plex
 # 10.0.100.21 - jellyfin
