@@ -6,6 +6,7 @@ kind: Service
 metadata:
   # name: A unique name for the ClusterIP service.
   name: heimdall-clusterip-svc
+  namespace: default
   labels:
     app: heimdall
 spec:

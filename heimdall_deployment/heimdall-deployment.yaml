@@ -5,6 +5,7 @@ kind: Deployment
 metadata:
   # name: A unique name for your Deployment.
   name: heimdall-deployment
+  namespace: default
   labels:
     app: heimdall
 spec:
