@@ -4,6 +4,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: influxdb-deployment # Name for the Deployment
+  namespace: default
   labels:
     app: influxdb
 spec:

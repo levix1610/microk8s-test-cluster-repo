@@ -4,6 +4,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: influxdb-clusterip-svc # Name for the internal service
+  namespace: default
   labels:
     app: influxdb
 spec:
