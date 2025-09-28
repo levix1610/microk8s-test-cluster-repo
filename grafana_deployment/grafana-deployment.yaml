@@ -5,6 +5,7 @@ kind: Deployment
 metadata:
   # name: A unique name for your Deployment.
   name: grafana-deployment
+  namespace: default
   labels:
     app: grafana
 spec:
