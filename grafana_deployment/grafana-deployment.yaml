@@ -10,6 +10,7 @@ metadata:
     app: grafana
 spec:
   replicas: 1 # e.g., 2
+  revisionHistoryLimit: 2  # Max number of replicasets
   selector:
     # Must match the labels on the Pod template below.
     matchLabels:
