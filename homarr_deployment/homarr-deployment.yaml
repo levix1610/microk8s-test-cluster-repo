@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: homarr
-        image: ghcr.io/homarr-labs/homarr:v1.40.0 #(updated 10/03/25)
+        image: ghcr.io/homarr-labs/homarr:v1.41.0 #(updated 10/10/25)
         ports:
         - containerPort: 7575
           name: homarr-http
