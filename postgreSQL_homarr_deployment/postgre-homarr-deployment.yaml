@@ -24,7 +24,7 @@ spec:
       containers:
       - name: postgres-homarr
         # Use an official Postgres image. Consider pinning to a specific version (e.g., postgres:15) for stability.
-        image: postgres@sha256:feff5b24fedd610975a1f5e743c51a4b360437f4dc3a11acf740dcd708f413f6 # updated (9/17/25) - move to latest stable container image.
+        image: postgres@sha256:073e7c8b84e2197f94c8083634640ab37105effe1bc853ca4d5fbece3219b0e8 # updated (10/11/25) - latest stable container image
         ports:
         - containerPort: 5432 # Standard PostgreSQL port
           name: postgres-h-port
