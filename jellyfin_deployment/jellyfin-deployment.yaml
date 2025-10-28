@@ -25,7 +25,7 @@ spec:
         node.kubernetes.io/microk8s-worker: microk8s-worker
       containers:
       - name: jellyfin
-        image: linuxserver/jellyfin:10.11.0 # update (10/21/25)
+        image: linuxserver/jellyfin:10.11.1 # update (10/28/25)
         ports:
         - containerPort: 8096 # The port your application listens on INSIDE the container (e.g., 8080)
           name: jellyfin-http # http port for jellyfin container.
