@@ -25,7 +25,7 @@ spec:
         node.kubernetes.io/microk8s-worker: microk8s-worker
       containers:
       - name: pihole-mgmt
-        image: pihole/pihole:2025.10.3 # repot/app:version. (updated to latest version 10/29/2025)
+        image: pihole/pihole:2025.11.0 # repot/app:version. (updated to latest version 11/04/2025)
         ports:
         - containerPort: 443 # The port the application needs to connect to an HTTPS web socket.
           name: pihole-m-https # Name of the port.
