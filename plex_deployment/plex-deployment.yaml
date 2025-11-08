@@ -25,9 +25,9 @@ spec:
       containers:
       - name: plex
         image: linuxserver/plex:1.42.2 # updated 9/29/25
-        # env: # Once server is claimed this env section can be commented out.  Need to look into making a secret in the future.
-        # - name: PLEX_CLAIM # Environmental variable to claim server on creation.
-        #   value: "claim-xxxxxxxxxxxx" # add in claim ID here.
+        env: # Once server is claimed this env section can be commented out.  Need to look into making a secret in the future.
+        - name: PLEX_CLAIM # Environmental variable to claim server on creation.
+          value: "{{ plex_claim_token }}" # add in claim ID here. # Ansible Vault Secret - update on ansible side during initial deployment.
         ports:
         - containerPort: 32400 # The port your application listens on INSIDE the container.
           name: plex-http # http port for the plex container
