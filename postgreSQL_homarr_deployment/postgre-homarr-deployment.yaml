@@ -24,7 +24,7 @@ spec:
       containers:
       - name: postgres-homarr
         # Use an official Postgres image. Consider pinning to a specific version (e.g., postgres:15) for stability.
-        image: postgres@sha256:e6a4209d1a4893f2df3bdcde58f8926c3c929c4d51df90990ed1b36d83c1382a # updated (10/13/25) - latest version 17.6 trixie
+        image: postgres:17.7-trixie # updated (11/14/25) - latest version 17.7 trixie
         ports:
         - containerPort: 5432 # Standard PostgreSQL port
           name: postgres-h-port
